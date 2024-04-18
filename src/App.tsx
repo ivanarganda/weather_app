@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import Fog from './assets/Fog.gif';
+import react , { FC } from 'react';
+import Fog from './assets/Fog.jpg';
 import LeftSection from './components/LeftSection';
 import RightSecton from './components/RightSection';
 import BottomSection from './components/BottomSection';
@@ -23,7 +23,7 @@ const App: FC = () => {
         <BottomSection />
       </footer>
     </div>
-  );
+  ); 
 }
 
-export default App;
+export default react.memo(App);
