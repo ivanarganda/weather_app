@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { FC } from 'react';
+import Fog from './assets/Fog.gif';
+import LeftSection from './components/LeftSection';
+import RightSecton from './components/RightSection';
+import BottomSection from './components/BottomSection';
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ 
+      backgroundImage: `url(${Fog})` , 
+      backgroundAttachment:'fixed' , 
+      backgroundSize:'cover' , 
+      backgroundRepeat:'no-repeat' 
+      }} 
+      className="w-full h-screen flex flex-col"
+    >
+      {/* Header with both left and right sections */}
+      <aside className='h-1/2 w-full flex flex-row justify-between'>
+        <LeftSection />
+        <RightSecton />
+      </aside>
+      {/* Footer with bottom section */}
+      <footer className='h-1/2 w-full flex flex-col items-center'>
+        <BottomSection />
+      </footer>
     </div>
   );
 }
