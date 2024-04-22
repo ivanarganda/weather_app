@@ -14,9 +14,9 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="text-lg mr-2"
           >
             <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
@@ -31,9 +31,9 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="text-lg mr-2"
           >
             <path d="m12 14 4-4"></path>
@@ -49,9 +49,9 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="text-lg mr-2"
           >
             <path d="M22 12a10.06 10.06 1 0 0-20 0Z"></path>
@@ -68,9 +68,9 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="text-lg mr-2"
           >
             <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"></path>
