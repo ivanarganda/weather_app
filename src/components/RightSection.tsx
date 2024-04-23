@@ -5,7 +5,7 @@ interface RightSectonProps {
  
 const RightSecton: FC<RightSectonProps> = (props) => {
     return (
-        <div className="space-y-4">
+        <div className="space-y-8 mt-10">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
