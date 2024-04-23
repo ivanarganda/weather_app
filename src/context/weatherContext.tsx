@@ -24,7 +24,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     const [city, setCity] = useState<string | undefined>();
     const geolocation = navigator.geolocation;
     const API_URL_GEOLOCATION = `https://maps.googleapis.com/maps/api/geocode/`;
-    const API_URL = `http://api.weatherapi.com/v1/current.json`;
+    const API_URL = `http://api.weatherapi.com/v1/forecast.json`;
 
     const getCurrentCity = async (lat: number, lng: number) => {
         const response = await axios.get(`${API_URL_GEOLOCATION}json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_GEOCODE_KEY}`);

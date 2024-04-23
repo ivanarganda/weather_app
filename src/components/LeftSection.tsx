@@ -1,5 +1,5 @@
 import React , { FC, useContext, useEffect, useState } from 'react';
-import { GeolocalizationContext, GeolocalizationContextValue } from '../context/geolocalizationContext';
+import { GeolocalizationContext, GeolocalizationContextValue } from '../context/weatherContext';
 
  
 const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
@@ -31,6 +31,7 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           <div>
             <h1 className="text-4xl font-semibold">{weather}</h1> 
             <h2 className="text-2xl">{address}</h2>
+            <h2 className="text-2xl">Today</h2>
           </div>
         </div>
         <div className="flex items-start mt-4">

@@ -2,8 +2,8 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import LeftSection from './components/LeftSection';
 import RightSection from './components/RightSection';
 import BottomSection from './components/BottomSection';
-import { GeolocalizationContext, GeolocalizationContextValue } from './context/geolocalizationContext';
-import images from './loadImages'  
+import { GeolocalizationContext, GeolocalizationContextValue } from './context/weatherContext'; 
+import SpainMap from './components/SpainMap';
 
 const App: FC = () => {
 
@@ -17,12 +17,14 @@ const App: FC = () => {
           if (imageWeather === 'Partly cloudy') {
             imageWeather = 'PartialCloud';
           }
-    
           // Dynamically import the image
           const imageURL = await import('./assets/'+imageWeather+'.jpg');
           
           // Set background image
-          $('body').css('background-image', `url(${imageURL.default})`);
+          $('.body').css('background-image', `url(${imageURL.default})`)
+                    .css('background-size', 'cover')
+                    .css('background-repeat', 'no-repeat')
+                    .css('background-attachment', 'fixed');
         }
       };
     
@@ -32,12 +34,6 @@ const App: FC = () => {
 
   return (
     <div
-      style={{
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        height: 'auto',
-      }}
       className="body w-full min-w-[350px] min-h-screen flex flex-col"
     >
       {/* Header with both left and right sections */}
@@ -49,6 +45,10 @@ const App: FC = () => {
       <footer className="h-1/2 pt-20 w-full h-auto flex flex-col items-center text-gray-100">
         <BottomSection />
       </footer>
+      {/* Spain map */}
+      <map className="m-auto mt-20 w-1/2 relative">
+        <SpainMap />
+      </map>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { GeolocalizationProvider } from './context/geolocalizationContext';
+import { GeolocalizationProvider } from './context/weatherContext';
 import $ from 'jquery';
 
 declare global {
