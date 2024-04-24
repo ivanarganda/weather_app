@@ -1,21 +1,21 @@
-import React , { FC, useContext, useEffect, useState } from 'react';
+import React , { FC, useContext } from 'react';
 import { GeolocalizationContext, GeolocalizationContextValue } from '../context/weatherContext';
 
  
 const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
 
-    const { address , condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);  
+    const { city , address , condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);  
 
     const weather = condition?.weather;
-    const forecast = condition?.forecast;
-
+    const forecast = condition?.forecast; 
+ 
     return ( 
         <div>
         <div className="flex items-center space-x-2">  
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
-            height="24"
+            height="24" 
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -30,8 +30,8 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           </svg>
           <div>
             <h1 className="text-4xl font-semibold">{weather}</h1> 
-            <h2 className="text-2xl">{address}</h2>
-            <h2 className="text-2xl">Today</h2>
+            <h2 className="text-2xl">{address} {'('}{city}{')'}</h2>
+            <h2 className="text-2xl">Today</h2>  
           </div>
         </div>
         <div className="flex items-start mt-4">

@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 interface GeolocalizationContextValue {
     address: string | undefined; 
     condition:any;
     city: string | undefined;
+    changeLocation: Function
 }
 
 const GeolocalizationContext = React.createContext<GeolocalizationContextValue>({
     address: '',
     condition: {conditions:{}},
-    city:''
+    city:'',
+    changeLocation: () => { }
 }); 
 
 type GeolocalizationContextProviderProps = {
     children: React.ReactNode;
+}
+
+type Location = {
+        lat: number,
+        lng: number
 }
 
 const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderProps) => {
@@ -22,37 +29,60 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     const [address, setAddress] = useState<string | undefined>();
     const [condition, setCondition] = useState<Object>();
     const [city, setCity] = useState<string | undefined>();
+    const [changingLocation,setChangingLocation] = useState<Boolean>(false);
+    const [location,setLocation] = useState<Location>({
+        lat: 0,
+        lng: 0 
+    });
     const geolocation = navigator.geolocation;
     const API_URL_GEOLOCATION = `https://maps.googleapis.com/maps/api/geocode/`;
-    const API_URL = `http://api.weatherapi.com/v1/forecast.json`;
+    const API_URL = `http://api.weatherapi.com/v1/forecast.json`; 
 
-    const getCurrentCity = async (lat: number, lng: number) => {
+    const getCurrentCity = useCallback(async (lat: number, lng: number) => {
         const response = await axios.get(`${API_URL_GEOLOCATION}json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_GEOCODE_KEY}`);
         return response.data;
-    }
+    },[API_URL_GEOLOCATION])
+
+    const changeLocation = ( lat:number , lng:number ):void=>{
+        setLocation({
+            lat: lat,
+            lng: lng
+        });
+        setChangingLocation(true);
+    } 
 
     useEffect(() => {
-        geolocation.getCurrentPosition((position) => {
-            let lat = position.coords.latitude - 0.0655;
-            let lng = position.coords.longitude - 0.1153;
-            getCurrentCity(lat, lng).then((cityData) => {
-                let address = cityData.plus_code.compound_code.replace(/[a-zA-Z0-9+]+/,'').trim();
-                let city = address.split(',')[0].trim();
-                let country = address.split(',')[address.split(',').length-1].trim();
-                if ( country === 'Spain' && city === 'Arganda del Rey' ){
-                    city = 'Arganda';
-                }
-                
-                setAddress( address );
-                setCity( city );
-                
-            });
-        })
-    }, []);
+        if ( changingLocation === false ){
+            geolocation.getCurrentPosition((position) => {
+                let lat = position.coords.latitude - 0.0655;
+                let lng = position.coords.longitude - 0.1153;
+                axios.get(API_URL+'?q='+lat+','+lng+'&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response)=>{
 
+                    setAddress( response.data.location.name );
+                    setCity( response.data.location.region );   
+                
+                })
+                    
+            })
+        } else {
+            console.log( API_URL+'?q='+location.lat+','+location.lng+'&key=' + process.env.REACT_APP_API_WEATHER_KEY );
+            
+            axios.get(API_URL+'?q='+location.lat+','+location.lng+'&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response)=>{
+            
+                setAddress( response.data.location.name );
+                setCity( response.data.location.region );   
+                    
+            })
+        }
+    }, [changingLocation,city,address,geolocation,getCurrentCity,API_URL,location.lat,location.lng]);
+ 
     useEffect(()=>{
-        if ( city ){
-            axios?.get(`${API_URL}?q=${city}&key=${process.env.REACT_APP_API_WEATHER_KEY}`).then(( response )=>{
+
+        if ( city && address ){ 
+
+            console.log( `${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}` );
+            
+            axios?.get(`${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}`).then(( response )=>{
                 
                 if ( response.data.current !== undefined ){                    
                     setCondition({
@@ -63,17 +93,17 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
                             wind_kph: response.data.current.wind_kph,
                             wind_dir: response.data.current.wind_dir,
                             percentageClouds: response.data.current.cloud,
-                            precip_mm: response.data.current.precip_mm
+                            precip_mm: response.data.current.precip_mm 
                         }
                     });    
                 }                 
             })
         }
-    },[city,API_URL])
+    },[address,city,API_URL])
     
 
     return (
-        <GeolocalizationContext.Provider value={{ address, condition , city }}>
+        <GeolocalizationContext.Provider value={{ address, condition , city , changeLocation }}>
             {children}
         </GeolocalizationContext.Provider> 
     );
