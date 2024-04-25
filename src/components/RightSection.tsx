@@ -1,9 +1,15 @@
-import React, { FC } from 'react';
-interface RightSectonProps {
+import React, { FC, useContext } from 'react';
+import { GeolocalizationContext, GeolocalizationContextValue } from '../context/weatherContext';
+
+const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
+
+    const { condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);  
+
+    const forecast = condition?.forecast; 
+
+    console.log( condition );
     
-}
- 
-const RightSecton: FC<RightSectonProps> = (props) => {
+
     return (
         <div className="space-y-8 mt-10">
         <div className="flex items-center">
@@ -21,7 +27,7 @@ const RightSecton: FC<RightSectonProps> = (props) => {
           >
             <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
           </svg>
-          <span>Humidity 50 %</span>
+          <span>Humidity {forecast?.humidity} %</span>
         </div>
         <div className="flex items-center">
           <svg
@@ -58,7 +64,7 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             <path d="M12 12v8a2 2 0 0 0 4 0"></path>
             <path d="M12 2v1"></path>
           </svg>
-          <span>Chance of Rain 0%</span>
+          <span>Chance of Rain {forecast?.chance_of_rain}%</span>
         </div>
         <div className="flex items-center">
           <svg
@@ -77,7 +83,7 @@ const RightSecton: FC<RightSectonProps> = (props) => {
             <path d="M9.6 4.6A2 2 0 1 1 11 8H2"></path>
             <path d="M12.6 19.4A2 2 0 1 0 14 16H2"></path>
           </svg>
-          <span>Wind Speed 1.4 km/h</span>
+          <span>Wind Speed {forecast?.wind_kph} km/h</span>
         </div>
       </div>
     );

@@ -1,9 +1,11 @@
 import React, { FC, useContext, useEffect , lazy , Suspense } from 'react';
-import LeftSection from './components/LeftSection';
-import RightSection from './components/RightSection';
-import BottomSection from './components/BottomSection';
 import { GeolocalizationContext, GeolocalizationContextValue } from './context/weatherContext'; 
-import SpainMap from './components/SpainMap';
+
+const LeftSection = lazy(()=>import('./components/LeftSection'));
+const RightSection = lazy(()=>import('./components/RightSection'));
+const BottomSection = lazy(()=>import('./components/BottomSection'));
+const SpainMap = lazy(()=>import('./components/SpainMap'));
+
 
 const App: FC = () => {
 
@@ -24,7 +26,7 @@ const App: FC = () => {
           $('.body').css('background-image', `url(${imageURL.default})`)
                     .css('background-size', 'cover')
                     .css('background-repeat', 'no-repeat')
-                    .css('background-attachment', 'fixed');
+                    .css('background-attachment', 'fixed'); 
         }
       };
     
@@ -35,10 +37,10 @@ const App: FC = () => {
   return (
     <Suspense fallback={null}>
       <div
-        className="body w-full min-w-[350px] min-h-screen flex flex-col"
+        className="body w-full min-w-[350px] min-h-screen pb-2 flex flex-col"
       >
         {/* Header with both left and right sections */}
-        <aside className="h-1/2 w-full h-auto pb-20 flex flex-row justify-around pt-20 bg-gray-800 bg-opacity-40 text-gray-100">
+        <aside className="h-1/2 w-full h-auto pb-20 rounded-lg flex flex-row justify-around pt-20 bg-gray-800 bg-opacity-40 text-gray-100">
           <LeftSection/>
           <RightSection />
         </aside>
@@ -47,7 +49,7 @@ const App: FC = () => {
           <BottomSection />
         </footer>
         {/* Spain map */}
-        <map className="m-auto mt-20 w-1/2 relative">
+        <map className="m-auto mt-20 w-1/2 bg-gray-800 rounded-lg bg-opacity-30 relative">
           <SpainMap />
         </map>
       </div>
@@ -55,4 +57,4 @@ const App: FC = () => {
   );
 };
  
-export default App;
+export default React.memo(App);

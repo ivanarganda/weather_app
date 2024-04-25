@@ -80,4 +80,4 @@ const BottomSection: FC<Props> = () => {
     );
 }
 
-export default BottomSection;
+export default React.memo(BottomSection);
