@@ -43,7 +43,7 @@ const SpainMap: FC = () => {
                             left: '' + province.iconWeather.left,
                             width: '' + province.iconWeather.width,
                             height: '' + province.iconWeather.height,
-                            borderRadius: '50%',
+                            borderRadius: '50%', 
                             fontSize:'23px',
                             zIndex: 1
                         }} dangerouslySetInnerHTML={{__html:icons[weatherData[index]]}} ></span>

@@ -1,5 +1,5 @@
-import React, { FC, useContext, useEffect , lazy , Suspense } from 'react';
-import { GeolocalizationContext, GeolocalizationContextValue } from './context/weatherContext'; 
+import React, { FC, useContext, useEffect , lazy , Suspense, useState } from 'react';
+import { GeolocalizationContext } from './context/weatherContext'; 
 
 const LeftSection = lazy(()=>import('./components/LeftSection'));
 const RightSection = lazy(()=>import('./components/RightSection'));
@@ -8,30 +8,43 @@ const SpainMap = lazy(()=>import('./components/SpainMap'));
 
 
 const App: FC = () => {
+  const { condition  } = useContext(GeolocalizationContext);
 
-  const { condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);
-  
+  const [count, setCount] = useState(0);
+
+  const timer = setInterval(() => {
+    setCount((c) => c + 1);
+  },4000);
+
   useEffect(() => {
-    
-      const setBackgroundImage = async () => {
-        if (condition !== undefined) {
-          let imageWeather = condition.weather;
-          if (imageWeather === 'Partly cloudy' || imageWeather === 'Partly Cloudy') {
-            imageWeather = 'PartialCloud';
-          }
-          // Dynamically import the image
-          const imageURL = await import('./assets/wallpapersWeather/'+imageWeather+'.jpg');
-          
-          // Set background image
-          $('.body').css('background-image', `url(${imageURL.default})`)
-                    .css('background-size', 'cover')
-                    .css('background-repeat', 'no-repeat')
-                    .css('background-attachment', 'fixed'); 
+    const setBackgroundImage = async () => {
+      if (condition!== undefined) {
+        let imageWeather = condition.weather;
+        if (imageWeather === 'Partly cloudy' || imageWeather === 'Partly Cloudy') {
+          imageWeather = 'PartialCloud';
         }
-      };
-    
-      setBackgroundImage();
-  
+        if (imageWeather === 'Patchy rain nearby') {
+          imageWeather = 'PatchyRainNearby';
+        }
+
+        try {
+          // Dynamically import the image
+          const imageURL = await import(`./assets/wallpapersWeather/${imageWeather}.jpg`);
+
+          // Set background image
+          $('.body').css('background-image', `url(${imageURL?.default})`)
+                   .css('background-size', 'cover')
+                   .css('background-repeat', 'no-repeat')
+                   .css('background-attachment', 'fixed');
+        } catch (error) {
+          // Handle error when image cannot be loaded
+          console.error("Error loading background image:", error);
+        }
+      }
+    };
+
+    setBackgroundImage();
+
   }, [condition]);
 
   return (
@@ -41,7 +54,7 @@ const App: FC = () => {
       >
         {/* Header with both left and right sections */}
         <aside className="h-1/2 w-full h-auto pb-20 rounded-lg flex flex-row justify-around pt-20 bg-gray-800 bg-opacity-40 text-gray-100">
-          <LeftSection/>
+          <LeftSection />
           <RightSection />
         </aside>
         {/* Footer with bottom section */}
@@ -57,4 +70,4 @@ const App: FC = () => {
   );
 };
  
-export default React.memo(App);
+export default App;

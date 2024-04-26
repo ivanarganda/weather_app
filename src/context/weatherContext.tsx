@@ -26,6 +26,11 @@ type Location = {
     lng: number
 }
 
+// For getForecast function
+interface ParamForecast {
+    days: boolean | number
+}
+
 const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderProps) => {
 
     const [address, setAddress] = useState<string | undefined>();
@@ -50,6 +55,28 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         return await response.data.current.condition.text;
     }
 
+    const getForecast = ( days:ParamForecast['days'] = false )=> {        
+
+        axios?.get(`${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}`).then((response) => {
+
+                if (response.data.current !== undefined) {
+                    
+                    setCondition({
+                        weather: response.data.current.condition.text,
+                        forecast: {
+                            temperature: response.data.current.temp_c - 2.5,
+                            humidity: response.data.current.humidity,
+                            wind_kph: response.data.current.wind_kph,
+                            wind_dir: response.data.current.wind_dir,
+                            percentageClouds: response.data.current.cloud,
+                            precip_mm: response.data.current.precip_mm,
+                            chance_of_rain:response.data.forecast.forecastday[0].day.daily_chance_of_rain
+                        }
+                    });
+                }
+            })
+    }
+
     const changeLocation = (lat: number, lng: number): void => {
         setLocation({
             lat: lat,
@@ -61,8 +88,9 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     useEffect(() => {
         if (changingLocation === false) {
             geolocation.getCurrentPosition((position) => {
-                let lat = position.coords.latitude - 0.0655;
-                let lng = position.coords.longitude - 0.1153;
+                let lat = position.coords.latitude;
+                let lng = position.coords.longitude;
+                
                 axios.get(API_URL + '?q=' + lat + ',' + lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
                     setAddress(response.data.location.name);
@@ -72,7 +100,6 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
             })
         } else {
-            console.log(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY);
 
             axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
@@ -86,26 +113,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     useEffect(() => {
 
         if (city && address) {
-
-            axios?.get(`${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}`).then((response) => {
-
-                if (response.data.current !== undefined) {
-                    console.log( response.data.forecast.forecastday[0].day.daily_chance_of_rain );
-                    
-                    setCondition({
-                        weather: response.data.current.condition.text,
-                        forecast: {
-                            temperature: response.data.current.temp_c,
-                            humidity: response.data.current.humidity,
-                            wind_kph: response.data.current.wind_kph,
-                            wind_dir: response.data.current.wind_dir,
-                            percentageClouds: response.data.current.cloud,
-                            precip_mm: response.data.current.precip_mm,
-                            chance_of_rain:response.data.forecast.forecastday[0].day.daily_chance_of_rain
-                        }
-                    });
-                }
-            })
+            getForecast();
         }
     }, [address, city, API_URL]) 
 

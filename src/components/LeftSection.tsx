@@ -7,9 +7,9 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
     const { city , address , condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);  
 
     const weather = condition?.weather;
-    const forecast = condition?.forecast; 
+    const forecast = condition?.forecast;  
  
-    return ( 
+    return (   
         <div>
         <div className="flex items-center space-x-2">  
           <svg
@@ -45,4 +45,4 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
     );
 }
  
-export default React.memo(LeftSection);
+export default LeftSection;

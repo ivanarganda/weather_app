@@ -7,9 +7,6 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
 
     const forecast = condition?.forecast; 
 
-    console.log( condition );
-    
-
     return (
         <div className="space-y-8 mt-10">
         <div className="flex items-center">

@@ -17,7 +17,7 @@ export const icons: Icon = {
     'Light Rain shower':'🌦️',
     'Light Rain Shower':'🌦️',
     'Patchy rain':'🌧️',
-    'Patchy Rain':'🌧️',
+    'Patchy Rain':'🌧️', 
     'Patchy light drizzle':'🌧️',
     'Patchy Light Drizzle':'🌧️',
     'mist':'🌫️',
