@@ -4,6 +4,7 @@ import axios from "axios";
 interface GeolocalizationContextValue {
     address: string | undefined;
     condition: any;
+    forecastDays: any[];
     city: string | undefined;
     changeLocation: (lat: number, lng: number) => void;
     getCurrentWeather: (lat: number, lng: number) => Promise<any>;
@@ -12,9 +13,10 @@ interface GeolocalizationContextValue {
 const GeolocalizationContext = React.createContext<GeolocalizationContextValue>({
     address: '',
     condition: { conditions: {} },
+    forecastDays: [],
     city: '',
     changeLocation: () => { },
-    getCurrentWeather: async (lat: number, lng: number) => Promise.resolve(),
+    getCurrentWeather: async (lat: number, lng: number) => Promise.resolve()
 });
 
 type GeolocalizationContextProviderProps = {
@@ -35,6 +37,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
     const [address, setAddress] = useState<string | undefined>();
     const [condition, setCondition] = useState<Object>();
+    const [ forecastDays , setForecastDays ] = useState([]);
     const [city, setCity] = useState<string | undefined>();
     const [changingLocation, setChangingLocation] = useState<Boolean>(false);
     const [location, setLocation] = useState<Location>({
@@ -45,8 +48,10 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     const API_URL_GEOLOCATION = `https://maps.googleapis.com/maps/api/geocode/`;
     const API_URL = `http://api.weatherapi.com/v1/forecast.json`;
 
-    const getCurrentCity = useCallback(async (lat: number, lng: number) => {
+    const getCurrentCity = useCallback(async (lat: number, lng: number) => {        
         const response = await axios.get(`${API_URL_GEOLOCATION}json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_GEOCODE_KEY}`);
+        console.log( response.data );
+        
         return response.data;
     }, [API_URL_GEOLOCATION])
 
@@ -55,26 +60,28 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         return await response.data.current.condition.text;
     }
 
-    const getForecast = ( days:ParamForecast['days'] = false )=> {        
+    const getForecast = ( days:ParamForecast['days'] = false )=> {
 
-        axios?.get(`${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}`).then((response) => {
+        let generalUrl = `${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}&days=7`;
+        
+        axios?.get( `${generalUrl}` ).then((response) => {
+            if (response.data.current !== undefined) {
+                setCondition({
+                    weather: response.data.current.condition.text,
+                    forecast: {
+                        temperature: response.data.current.temp_c,
+                        humidity: response.data.current.humidity,
+                        wind_kph: response.data.current.wind_kph,
+                        wind_dir: response.data.current.wind_dir,
+                        percentageClouds: response.data.current.cloud,
+                        precip_mm: response.data.current.precip_mm,
+                        chance_of_rain:response.data.forecast.forecastday[0].day.daily_chance_of_rain
+                    }
+                });
+                setForecastDays(response.data.forecast.forecastday);
+            }
+        })
 
-                if (response.data.current !== undefined) {
-                    
-                    setCondition({
-                        weather: response.data.current.condition.text,
-                        forecast: {
-                            temperature: response.data.current.temp_c - 2.5,
-                            humidity: response.data.current.humidity,
-                            wind_kph: response.data.current.wind_kph,
-                            wind_dir: response.data.current.wind_dir,
-                            percentageClouds: response.data.current.cloud,
-                            precip_mm: response.data.current.precip_mm,
-                            chance_of_rain:response.data.forecast.forecastday[0].day.daily_chance_of_rain
-                        }
-                    });
-                }
-            })
     }
 
     const changeLocation = (lat: number, lng: number): void => {
@@ -94,36 +101,33 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
                 axios.get(API_URL + '?q=' + lat + ',' + lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
                     setAddress(response.data.location.name);
-                    setCity(response.data.location.region);
+                    setCity(response.data.location.region);                
 
                 })
 
             })
         } else {
-
             axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
                 setAddress(response.data.location.name);
-                setCity(response.data.location.region);
+                setCity(response.data.location.region);                
 
             })
         }
     }, [changingLocation, city, address, geolocation, getCurrentCity, API_URL, location.lat, location.lng]);
 
     useEffect(() => {
-
         if (city && address) {
             getForecast();
         }
     }, [address, city, API_URL]) 
 
-
     return (
-        <GeolocalizationContext.Provider value={{ address, condition, city, changeLocation , getCurrentWeather }}>
+        <GeolocalizationContext.Provider value={{ address, condition, city, changeLocation , getCurrentWeather , forecastDays }}>
             {children}
         </GeolocalizationContext.Provider>
     );
 };
-
+ 
 export { GeolocalizationContext, GeolocalizationProvider };
 export type { GeolocalizationContextValue };

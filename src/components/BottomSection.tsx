@@ -1,15 +1,24 @@
-import React, { FC } from 'react';
-interface Props {
+import React, { FC , useMemo , useContext, useEffect } from 'react';
+import { GeolocalizationContext } from '../context/weatherContext';
 
-}
+const BottomSection: FC = () => { 
 
-const BottomSection: FC<Props> = () => {
+    const { forecastDays , condition  } = useContext( GeolocalizationContext );
+
+    console.log( forecastDays );
+
     return (
         <div className="mt-8">
             <div className="flex justify-between items-center">
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-transparent border border-white text-white">
-                    Thursday
-                </button>
+                <div className='flex items-center space-x-4'>
+                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-transparent border border-white text-white">
+                        Hours of Today
+                    </button>
+                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-transparent border border-white text-white">
+                        All days
+                    </button> 
+                </div>
+                
                 <div className="flex space-x-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -41,40 +50,16 @@ const BottomSection: FC<Props> = () => {
                     </svg>
                 </div>
             </div>
-            <div className="grid grid-cols-8 gap-4 mt-4">
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">3PM</p>
-                    <p className="text-2xl font-bold">28°C</p>
-                    <p className="text-sm">Feels like 30°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">4PM</p>
-                    <p className="text-2xl font-bold">28°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">5PM</p>
-                    <p className="text-2xl font-bold">24°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">6PM</p>
-                    <p className="text-2xl font-bold">17°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">7PM</p>
-                    <p className="text-2xl font-bold">11°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">8PM</p>
-                    <p className="text-2xl font-bold">11°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">9PM</p>
-                    <p className="text-2xl font-bold">5°C</p>
-                </div>
-                <div className="bg-black bg-opacity-40 p-4 rounded-md">
-                    <p className="text-sm">10PM</p>
-                    <p className="text-2xl font-bold">1°C</p>
-                </div>
+            <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mt-4 justify-center items-center">
+                {forecastDays?.map((forecast) => {
+                    return (
+                        <div key={forecast.date} className="bg-black bg-opacity-40 p-4 rounded-md">
+                            <p className="text-sm">3PM</p>
+                            <p className="text-2xl font-bold">28°C</p>
+                            <p className="text-sm">Feels like 30°C</p>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

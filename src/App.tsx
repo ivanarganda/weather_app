@@ -8,13 +8,7 @@ const SpainMap = lazy(()=>import('./components/SpainMap'));
 
 
 const App: FC = () => {
-  const { condition  } = useContext(GeolocalizationContext);
-
-  const [count, setCount] = useState(0);
-
-  const timer = setInterval(() => {
-    setCount((c) => c + 1);
-  },4000);
+  const { condition  } = useContext(GeolocalizationContext); 
 
   useEffect(() => {
     const setBackgroundImage = async () => {
@@ -62,7 +56,7 @@ const App: FC = () => {
           <BottomSection />
         </footer>
         {/* Spain map */}
-        <map className="m-auto mt-20 w-1/2 bg-gray-800 rounded-lg bg-opacity-30 relative">
+        <map id='weatherMap' className="m-auto mt-20 w-1/2 bg-gray-800 rounded-lg bg-opacity-30 relative">
           <SpainMap />
         </map>
       </div>

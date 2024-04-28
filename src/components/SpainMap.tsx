@@ -13,13 +13,17 @@ const SpainMap: FC = () => {
     useEffect(() => {
         // Fetch weather data for each province
         const fetchWeatherData = async () => {
-            const weatherPromises = memorizedProvinces.map(province => getCurrentWeather(province.location.lat, province.location.lng));
-            const weatherResults = await Promise.all(weatherPromises);
-            setWeatherData(weatherResults);
+            try {
+                const weatherPromises = memorizedProvinces.map(province => getCurrentWeather(province.location.lat, province.location.lng));
+                const weatherResults = await Promise.all(weatherPromises);
+                setWeatherData(weatherResults);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
         };
 
         fetchWeatherData();
-    }, [getCurrentWeather,memorizedProvinces]); 
+    }, [getCurrentWeather,memorizedProvinces]);   
 
     return (
         <React.Fragment>
