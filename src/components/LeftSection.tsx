@@ -35,10 +35,25 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           </div>
         </div>
         <div className="flex items-start mt-4">
-          <span className="text-8xl font-bold">{forecast?.temperature}</span>
-          <span className="text-4xl font-medium align-top mt-2">°C</span>
+          <div>
+            Now
+            <span className="text-6xl font-bold">{forecast?.temperature}</span>
+            <span className="text-4xl font-medium align-top mt-2">°C</span>
+          </div>
         </div>
-        <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-2 bg-transparent border border-white text-white">
+        <div className="flex items-start mt-4">
+          <div>
+            Max
+            <span className="text-6xl font-bold">{forecast?.max_temperature}</span>
+            <span className="text-4xl font-medium align-top mt-2">°C</span>
+          </div>
+          <div>
+            Min
+            <span className="text-6xl font-bold">{forecast?.min_temperature}</span>
+            <span className="text-4xl font-medium align-top mt-2">°C</span>
+          </div>
+        </div>
+        <button className="inline-flex mt-5 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-2 bg-transparent border border-white text-white">
           Change Location
         </button>
       </div>

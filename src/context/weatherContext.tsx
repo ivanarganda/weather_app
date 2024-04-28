@@ -51,8 +51,6 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
     const getCurrentCity = useCallback(async (lat: number, lng: number) => {        
         const response = await axios.get(`${API_URL_GEOLOCATION}json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_GEOCODE_KEY}`);
-        console.log( response.data );
-        
         return response.data;
     }, [API_URL_GEOLOCATION])
 
@@ -61,8 +59,8 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         return await response.data.current.condition.text;
     }
 
-    const SetImageWeather = (weather: string): string => {
-        return useImageWeather(weather.trim());
+    const SetImageWeather = (weather: string , is_day: boolean | number): string => {     
+        return useImageWeather(weather.trim() , is_day === 0 ? false : true );
     };
     
     const getForecast = async(days: ParamForecast['days'] = false) => {
@@ -71,7 +69,21 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         const response = await axios.get(`${generalUrl}`);
 
         if (response.data.current !== undefined) {
-            let weather_ = SetImageWeather(response.data.current.condition.text); // Moved here
+
+            // let currentHour = 
+            let currentHour = new Date().getHours();
+            if ( currentHour === 24 ){
+                currentHour = 0;
+            }
+
+            let is_day = response.data.forecast.forecastday[0].hour[currentHour].is_day;
+        
+            let weather_ = SetImageWeather(response.data.current.condition.text , is_day); // Moved here
+
+            if ( weather_ === 'Sunny' || weather_ === 'Mostly sunny' || weather_ === 'Mostly Sunny') {
+                weather_ = 'Moonlight';
+            }
+
             setCondition({
                 weather: weather_,
                 forecast: {
@@ -82,6 +94,9 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
                     percentageClouds: response.data.current.cloud,
                     precip_mm: response.data.current.precip_mm,
                     chance_of_rain: response.data.forecast.forecastday[0].day.daily_chance_of_rain,
+                    max_temperature: response.data.forecast.forecastday[0].day.maxtemp_c,
+                    min_temperature: response.data.forecast.forecastday[0].day.mintemp_c,
+                    is_day: is_day
                 },
             }); 
             setForecastDays(response.data.forecast.forecastday);  

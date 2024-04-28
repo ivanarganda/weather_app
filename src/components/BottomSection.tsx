@@ -5,8 +5,6 @@ const BottomSection: FC = () => {
 
     const { forecastDays , condition  } = useContext( GeolocalizationContext );
 
-    console.log( forecastDays );
-
     return (
         <div className="mt-8">
             <div className="flex justify-between items-center">
