@@ -13,13 +13,9 @@ const App: FC = () => {
   useEffect(() => {
     const setBackgroundImage = async () => {
       if (condition!== undefined) {
-        let imageWeather = condition.weather;
-        if (imageWeather === 'Partly cloudy' || imageWeather === 'Partly Cloudy') {
-          imageWeather = 'PartialCloud';
-        }
-        if (imageWeather === 'Patchy rain nearby') {
-          imageWeather = 'PatchyRainNearby';
-        }
+        let imageWeather = condition.weather.trim();
+        console.log( imageWeather );
+        
 
         try {
           // Dynamically import the image
@@ -39,7 +35,7 @@ const App: FC = () => {
 
     setBackgroundImage();
 
-  }, [condition]);
+  }, [ condition]);
 
   return (
     <Suspense fallback={null}>

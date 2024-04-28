@@ -7,6 +7,7 @@ import provinces from './Provinces';
 const SpainMap: FC = () => {
     const { changeLocation, getCurrentWeather } = useContext(GeolocalizationContext);
     const [ weatherData, setWeatherData ] = useState<any>(null);
+    const [ locationChanged, setLocationChanged ] = useState<boolean>(false); // State to track location change
     
     const memorizedProvinces = useMemo( () => provinces , []);
 
@@ -23,7 +24,13 @@ const SpainMap: FC = () => {
         };
 
         fetchWeatherData();
-    }, [getCurrentWeather,memorizedProvinces]);   
+    }, [getCurrentWeather,memorizedProvinces, locationChanged]); // Include locationChanged in the dependency array
+   
+    // Update locationChanged state when changeLocation is called
+    const handleLocationChange = (lat: number, lng: number) => {
+        changeLocation(lat, lng);
+        setLocationChanged(prevState => !prevState); // Toggle locationChanged state
+    };
 
     return (
         <React.Fragment>
@@ -31,7 +38,7 @@ const SpainMap: FC = () => {
             {weatherData && memorizedProvinces.map((province, index) => (
                 <React.Fragment key={index}>
                     <div>
-                        <img onClick={() => changeLocation(province.location.lat, province.location.lng)} className='group cursor-pointer hover:scale-90 transition-all' src={require(`./../assets/Provinces/${province.name}.png`)} style={{
+                        <img onClick={() => handleLocationChange(province.location.lat, province.location.lng)} className='group cursor-pointer hover:scale-90 transition-all' src={require(`./../assets/Provinces/${province.name}.png`)} style={{
                             position: 'absolute',
                             top: '' + province.position.top,
                             left: '' + province.position.left,
@@ -41,7 +48,7 @@ const SpainMap: FC = () => {
                             borderRadius: '50%',
                             zIndex: 1
                         }} alt={province.name} /> 
-                        <span onClick={() => changeLocation(province.location.lat, province.location.lng)} className='cursor-pointer group-hover:scale-90 transition-all' style={{
+                        <span onClick={() => handleLocationChange(province.location.lat, province.location.lng)} className='cursor-pointer group-hover:scale-90 transition-all' style={{
                             position: 'absolute',
                             top: '' + province.iconWeather.top,
                             left: '' + province.iconWeather.left,

@@ -49,8 +49,6 @@ export const icons: Icon = {
     'Light Sleet':' 🌨️',
     'Moderate or heavy sleet':'🌨️',
     'Moderate or Heavy Sleet':'🌨️',
-    'Patchy light sleet':'',
-    'Patchy Light Sleet':'',
     // Rain with Storm
     'Patchy light rain with thunder':'🌩️🌧️',
     'Patchy Light Rain with Thunder':'🌩️🌧️',

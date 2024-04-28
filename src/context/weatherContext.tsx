@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import useImageWeather from "../hooks/useImageWeather";
 
 interface GeolocalizationContextValue {
     address: string | undefined;
@@ -16,7 +17,7 @@ const GeolocalizationContext = React.createContext<GeolocalizationContextValue>(
     forecastDays: [],
     city: '',
     changeLocation: () => { },
-    getCurrentWeather: async (lat: number, lng: number) => Promise.resolve()
+    getCurrentWeather: async (lat: number, lng: number) => Promise.resolve(),
 });
 
 type GeolocalizationContextProviderProps = {
@@ -60,29 +61,33 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         return await response.data.current.condition.text;
     }
 
-    const getForecast = ( days:ParamForecast['days'] = false )=> {
-
+    const SetImageWeather = (weather: string): string => {
+        return useImageWeather(weather.trim());
+    };
+    
+    const getForecast = async(days: ParamForecast['days'] = false) => {
         let generalUrl = `${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}&days=7`;
-        
-        axios?.get( `${generalUrl}` ).then((response) => {
-            if (response.data.current !== undefined) {
-                setCondition({
-                    weather: response.data.current.condition.text,
-                    forecast: {
-                        temperature: response.data.current.temp_c,
-                        humidity: response.data.current.humidity,
-                        wind_kph: response.data.current.wind_kph,
-                        wind_dir: response.data.current.wind_dir,
-                        percentageClouds: response.data.current.cloud,
-                        precip_mm: response.data.current.precip_mm,
-                        chance_of_rain:response.data.forecast.forecastday[0].day.daily_chance_of_rain
-                    }
-                });
-                setForecastDays(response.data.forecast.forecastday);
-            }
-        })
+    
+        const response = await axios.get(`${generalUrl}`);
 
-    }
+        if (response.data.current !== undefined) {
+            let weather_ = SetImageWeather(response.data.current.condition.text); // Moved here
+            setCondition({
+                weather: weather_,
+                forecast: {
+                    temperature: response.data.current.temp_c,
+                    humidity: response.data.current.humidity,
+                    wind_kph: response.data.current.wind_kph,
+                    wind_dir: response.data.current.wind_dir,
+                    percentageClouds: response.data.current.cloud,
+                    precip_mm: response.data.current.precip_mm,
+                    chance_of_rain: response.data.forecast.forecastday[0].day.daily_chance_of_rain,
+                },
+            }); 
+            setForecastDays(response.data.forecast.forecastday);  
+        }
+
+    };
 
     const changeLocation = (lat: number, lng: number): void => {
         setLocation({
@@ -120,7 +125,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         if (city && address) {
             getForecast();
         }
-    }, [address, city, API_URL]) 
+    }, [address , changingLocation , city, API_URL]) 
 
     return (
         <GeolocalizationContext.Provider value={{ address, condition, city, changeLocation , getCurrentWeather , forecastDays }}>
