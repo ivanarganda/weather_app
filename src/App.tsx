@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect , lazy , Suspense, useState } from 'react';
+import React, { FC, useContext, useEffect , lazy , Suspense } from 'react';
 import { GeolocalizationContext } from './context/weatherContext'; 
 
 const LeftSection = lazy(()=>import('./components/LeftSection'));
@@ -14,10 +14,10 @@ const App: FC = () => {
     const setBackgroundImage = async () => {
       if (condition!== undefined) {
         let imageWeather = condition.weather.trim();
-        let isMorning = condition.is_day === 1 ? true : false;
         try {
+          
           // Dynamically import the image
-          const imageURL = await import(`./assets/wallpapersWeather/${isMorning ? 'morning' : 'night'}/${imageWeather}.jpg`); 
+          const imageURL = await import(`./assets/wallpapersWeather/${condition?.forecast?.is_day === 1 ? 'morning' : 'night'}/${imageWeather}.jpg`); 
 
           // Set background image
           $('.body').css('background-image', `url(${imageURL?.default})`)

@@ -80,7 +80,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         
             let weather_ = SetImageWeather(response.data.current.condition.text , is_day); // Moved here
 
-            if ( weather_ === 'Sunny' || weather_ === 'Mostly sunny' || weather_ === 'Mostly Sunny') {
+            if ( is_day === 0 &&  ( weather_ === 'Sunny' || weather_ === 'Mostly sunny' || weather_ === 'Mostly Sunny' )) {
                 weather_ = 'Moonlight';
             }
 
