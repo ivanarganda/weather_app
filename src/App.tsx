@@ -10,10 +10,13 @@ const SpainMap = lazy(()=>import('./components/SpainMap'));
 const App: FC = () => {
   const { condition  } = useContext(GeolocalizationContext); 
 
+  console.log( condition );
+  
+
   useEffect(() => {
     const setBackgroundImage = async () => {
       if (condition!== undefined) {
-        let imageWeather = condition.weather.trim();
+        let imageWeather = condition?.weather.trim(); 
         try {
           
           // Dynamically import the image

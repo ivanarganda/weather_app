@@ -9,7 +9,7 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
 
     return (
         <div className="space-y-8 mt-10">
-        <div className="flex items-center">
+        <div className="flex items-center text-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -26,7 +26,7 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           </svg>
           <span>Humidity {forecast?.humidity} %</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -44,7 +44,7 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           </svg>
           <span>Air Pressure 1009.483 PS</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -63,7 +63,7 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
           </svg>
           <span>Chance of Rain {forecast?.chance_of_rain}%</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -86,4 +86,4 @@ const RightSecton: FC<React.SVGProps<SVGSVGElement>> = (props) => {
     );
 }
  
-export default RightSecton;
+export default React.memo(RightSecton);

@@ -60,4 +60,4 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
     );
 }
  
-export default LeftSection;
+export default React.memo(LeftSection);

@@ -20,6 +20,8 @@ export const icons: Icon = {
     'Patchy Rain':'🌧️', 
     'Patchy light drizzle':'🌧️',
     'Patchy Light Drizzle':'🌧️',
+    'Light drizzle':'🌧️',
+    'Light Drizzle':'🌧️',
     'mist':'🌫️',
     'Mist':'🌫️',
     'Light rain':'🌧️',
@@ -63,5 +65,11 @@ export const icons: Icon = {
     'Few Clouds':' 🌤️',
     'Mostly sunny':'🌤️☀️',
     'Mostly Sunny':'🌤️☀️',
+    'ClearN': '🌌',
+    'SunnyN': '🌙',
+    'Few cloudsN': '🌥️',
+    'Few CloudsN': '🌥️',
+    'Mostly sunnyN': '🌥️',
+    'Mostly SunnyN': '🌥️'
     
 };
