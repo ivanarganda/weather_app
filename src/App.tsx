@@ -8,11 +8,8 @@ const SpainMap = lazy(()=>import('./components/SpainMap'));
 
 
 const App: FC = () => {
-  const { condition  } = useContext(GeolocalizationContext); 
-
-  console.log( condition );
+  const { condition  } = useContext(GeolocalizationContext);  
   
-
   useEffect(() => {
     const setBackgroundImage = async () => {
       if (condition!== undefined) {

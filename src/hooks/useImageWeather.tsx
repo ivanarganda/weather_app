@@ -1,8 +1,5 @@
 const useImageWeather = (weather: string , is_day:boolean): string => {
 
-    console.log( weather );
-    
-
     let RegexSunny = 'Sunny|Clear|Mostly sunny|Mostly Sunny';
     let RegexCloudy = 'Partly cloudy|Partly Cloudy|cloudy|Cloudy|Few clouds|Few Clouds';
     let RegexPatchyRain = 'Moderate rain|Moderate Rain|Patchy rain nearby|Patchy rain Nearby|Patchy rain|Patchy rain|Patchy Rain|Patchy light rain|Patchy light Rain|Patchy light drizzle|Patchy light Drizzle';
@@ -14,6 +11,7 @@ const useImageWeather = (weather: string , is_day:boolean): string => {
     let RegexModerateSnow = 'Moderate snow|Moderate Snow';
     let RegexHeavySnow = 'Heavy snow|Heavy Snow';
     let RegexLightSnow = 'Light snow|Light Snow|Light snow showers|Light snow Showers';
+    let RegexStorm = 'Storm|Storm|Thundery outbreaks in nearby|Thundery outbreaks in Nearby';
 
     const regexWeathers = {
         'Sunny': RegexSunny,
@@ -34,7 +32,6 @@ const useImageWeather = (weather: string , is_day:boolean): string => {
         for (let [key, regex] of Object.entries(regexWeathers)) {
             let found = regex.split('|').indexOf(weather);
             if (found > -1) {
-                console.log( key );
                 return key;
             }  
         }

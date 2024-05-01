@@ -31,12 +31,33 @@ const BottomSection: FC = () => {
         <div className="mt-8 w-1/"> 
             <div className="flex justify-between items-center">
                 <div className='flex items-center space-x-4'>
-                   <button onClick={()=>setByDays(0)} className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-transparent border border-white text-white">
-                        Hours of Today
-                    </button>
                     <button onClick={()=>setByDays(-1)} className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-transparent border border-white text-white">
                         All days
                     </button>  
+                </div>
+                <div className='flex items-center space-x-4'> 
+                    <div className="arrow left">
+                        <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>{
+                            if ( byDays < 1 ){
+                                setByDays(6);
+                            } else {
+                                setByDays(byDays - 1);
+                            }
+                        }} className="h-10 cursor-pointer w-10 hover:text-gray-400 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </div>
+                    <div className="arrow right">
+                        <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>{
+                            if ( byDays > 6 ){
+                                setByDays(0);
+                            } else {
+                                setByDays(byDays + 1);
+                            }
+                        }} className="h-10 cursor-pointer w-10 hover:text-gray-400 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
                 </div>
             </div>
             <div className="w-1/ grid grid-cols-1 lg:grid-cols-7 gap-4 mt-4 justify-center items-center">
@@ -57,7 +78,7 @@ const BottomSection: FC = () => {
                     if ( key === 1 ){
                         date = 'Tomorrow'; 
                     }
-                    return <div onClick={()=>setByDays(key)} key={forecast.date} className="bg-black bg-opacity-40 p-4 rounded-md cursor-pointer">
+                    return <div onClick={()=>setByDays(key)} key={forecast.date} className={`bg-${key === byDays ? 'gray-800' : 'black'} bg-opacity-40 p-4 rounded-md cursor-pointer`}>
                             <p className="text-lg">{date}</p>
                             <p className="text-2xl font-bold">{temperature}</p>
                             <p className="text-center text-3xl mt-2">{icons[checkIfMorning(weather)]}</p> 
@@ -67,7 +88,7 @@ const BottomSection: FC = () => {
             </div>
             { byDays !== -1 && (
                 <div className="bg-black flex w-full h-40 bg-opacity-40 mt-10 rounded-md cursor-pointer relative">
-                    <div className='w-full overflow-x-auto p-4 h-full flex flex-row justify-around space-x-20 absolute text-wrap'>
+                    <div className='w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-20 absolute text-wrap'>
                         {hoursByDay?.map((forecast: any, day: number) => {
                         let hour = forecast.time.split(':')[0].split(' ')[1];
                         let temperature = `${forecast.temp_c}ºC`;

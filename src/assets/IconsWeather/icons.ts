@@ -70,6 +70,8 @@ export const icons: Icon = {
     'Few cloudsN': '🌥️',
     'Few CloudsN': '🌥️',
     'Mostly sunnyN': '🌥️',
-    'Mostly SunnyN': '🌥️'
+    'Mostly SunnyN': '🌥️',
+    // Thunder
+    'Thundery outbreaks in nearby':'🌩️'
     
 };
