@@ -2,6 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.scroll-box-graphical-hours {
+    scroll-behavior: smooth;
+}
 .scroll-box-graphical-hours::-webkit-scrollbar {
     display: none;
 }

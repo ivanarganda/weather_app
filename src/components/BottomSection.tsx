@@ -1,14 +1,48 @@
-import React, { FC , useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC , useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { GeolocalizationContext } from '../context/weatherContext';
 import { icons } from '../assets/IconsWeather/icons';
+import {Events} from '../types';
+import Arrow from './Arrow';
 
 const BottomSection: FC = () => { 
     const { forecastDays , condition } = useContext(GeolocalizationContext);
-    const [byDays , setByDays] = useState<number>(-1);
+    const [byDays , setByDays] = useState<number>(0); 
 
     const forecast = useMemo(() => forecastDays, [forecastDays]); 
     // Fixing useMemo usage 
     const [ hoursByDay , setHoursByDay] = useState<string[]>();
+
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStartPosition, setDragStartPosition] = useState({ x: 0, y: 0 });
+    const [contentPosition, setContentPosition] = useState({ x: 0, y: 0 });
+    const scrollPosition = useRef<HTMLDivElement>(null);
+
+    const handleMouseDown = (event:Events['onMouse']) => {
+        setIsDragging(true);
+        setDragStartPosition({
+        x: event.clientX,
+        y: event.clientY
+        });
+    };
+
+    const handleMouseMove = (event:Events['onMouse']) => {
+        if (isDragging) {
+        const deltaX = event.clientX - dragStartPosition.x;
+        const deltaY = event.clientY - dragStartPosition.y;
+        setContentPosition({
+            x: contentPosition.x + deltaX,
+            y: contentPosition.y + deltaY
+        });
+        setDragStartPosition({
+            x: event.clientX,
+            y: event.clientY
+        });
+        }
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
 
     const checkIfMorning = useMemo(()=> ( weather:string ):string => {
         if ( condition?.forecast?.is_day === 0 && 
@@ -24,8 +58,11 @@ const BottomSection: FC = () => {
             hours.push(forecast[byDays].hour[i]);
         }
         setHoursByDay( hours );
-    },[byDays])
-    
+    },[condition])
+
+    useEffect(()=>{
+        
+    },[dragStartPosition])
 
     return (
         <div className="mt-8 w-1/"> 
@@ -37,32 +74,16 @@ const BottomSection: FC = () => {
                 </div>
                 <div className='flex items-center space-x-4'> 
                     <div className="arrow left">
-                        <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>{
-                            if ( byDays < 1 ){
-                                setByDays(6);
-                            } else {
-                                setByDays(byDays - 1);
-                            }
-                        }} className="h-10 cursor-pointer w-10 hover:text-gray-400 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
+                        <Arrow type='left' setByDays={setByDays} byDays={byDays}/>
                     </div>
                     <div className="arrow right">
-                        <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>{
-                            if ( byDays > 6 ){
-                                setByDays(0);
-                            } else {
-                                setByDays(byDays + 1);
-                            }
-                        }} className="h-10 cursor-pointer w-10 hover:text-gray-400 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                        <Arrow type='right' setByDays={setByDays} byDays={byDays}/>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div className="w-1/ grid grid-cols-1 lg:grid-cols-7 gap-4 mt-4 justify-center items-center">
-                {forecast && forecast?.map((forecast:any, key:number) => {
-                    
+
+                {forecast && forecast?.map((forecast:any, key:number) => {             
                     let day = parseInt(forecast.date.split('-')[2]);
                     let month = forecast.date.split('-')[1];
                     let date = `${day}/${month}`;
@@ -78,6 +99,7 @@ const BottomSection: FC = () => {
                     if ( key === 1 ){
                         date = 'Tomorrow'; 
                     }
+
                     return <div onClick={()=>setByDays(key)} key={forecast.date} className={`bg-${key === byDays ? 'gray-800' : 'black'} bg-opacity-40 p-4 rounded-md cursor-pointer`}>
                             <p className="text-lg">{date}</p>
                             <p className="text-2xl font-bold">{temperature}</p>
@@ -87,19 +109,31 @@ const BottomSection: FC = () => {
                 
             </div>
             { byDays !== -1 && (
-                <div className="bg-black flex w-full h-40 bg-opacity-40 mt-10 rounded-md cursor-pointer relative">
-                    <div className='w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-20 absolute text-wrap'>
+                <div id='box-graphical-hours' className="bg-black flex w-full h-40 bg-opacity-40 mt-10 rounded-md cursor-pointer relative">
+                    <div id='left-arrow' className='absolute hover:bg-gray-600 left-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
+                        <Arrow type='left'/>
+                    </div>
+                    <div id='right-arrow' className='absolute hover:bg-gray-600 right-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
+                        <Arrow type='right' />
+                    </div>
+                    
+                    <div 
+                        onMouseMove={handleMouseMove} 
+                        onMouseDown={handleMouseDown} 
+                        onMouseUp={handleMouseUp}
+                        ref={scrollPosition}
+                        className='pl-12 w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-10 absolute text-wrap'>
                         {hoursByDay?.map((forecast: any, day: number) => {
-                        let hour = forecast.time.split(':')[0].split(' ')[1];
-                        let temperature = `${forecast.temp_c}ºC`;
-                        let weather = forecast.condition.text.trim(); 
-                        
-                        return (
-                        <div key={day} className="w-full  flex-col">
-                            <p className="text-lg">{hour}h</p>
-                            <p className="text-2xl font-bold">{temperature}</p>
-                            <p className="text-center text-3xl mt-2">{icons[checkIfMorning(weather)]}</p>
-                        </div>
+                            let hour = forecast.time.split(':')[0].split(' ')[1];
+                            let temperature = `${forecast.temp_c}ºC`;
+                            let weather = forecast.condition.text.trim(); 
+                            
+                            return (
+                            <div key={day} className="w-full  flex-col">
+                                <p className="text-lg">{hour}h</p>
+                                <p className="text-2xl font-bold">{temperature}</p>
+                                <p className="text-center text-3xl mt-2">{icons[checkIfMorning(weather)]}</p>
+                            </div>
                         );
                         })}
                     </div>

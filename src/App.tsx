@@ -28,10 +28,10 @@ const App: FC = () => {
           // Handle error when image cannot be loaded
           console.error("Error loading background image:", error);
         }
-      }
+      } 
     };
-    setBackgroundImage();
-  }, [ condition]);
+    setBackgroundImage()
+  }, [ condition])
 
   return (
     <Suspense fallback={null}>
@@ -53,7 +53,7 @@ const App: FC = () => {
         </map>
       </div>
     </Suspense>
-  );
-};
+  )
+}
  
 export default App;

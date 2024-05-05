@@ -1,7 +1,9 @@
 const useImageWeather = (weather: string , is_day:boolean): string => {
-
+    console.log( weather );
+    
     let RegexSunny = 'Sunny|Clear|Mostly sunny|Mostly Sunny';
-    let RegexCloudy = 'Partly cloudy|Partly Cloudy|cloudy|Cloudy|Few clouds|Few Clouds';
+    let RegexCloudy = 'Partly cloudy|Partly Cloudy|cloudy|Cloudy|Few clouds|Few Clouds|Overcast';
+    let RegexOvercast = 'Overcast';
     let RegexPatchyRain = 'Moderate rain|Moderate Rain|Patchy rain nearby|Patchy rain Nearby|Patchy rain|Patchy rain|Patchy Rain|Patchy light rain|Patchy light Rain|Patchy light drizzle|Patchy light Drizzle';
     let RegexLightRain = 'Light Rain shower|Light Rain Shower|Light rain|Light Rain';
     let RegexRain = 'Rain shower|Rain Shower|Rain|rain';
@@ -15,6 +17,7 @@ const useImageWeather = (weather: string , is_day:boolean): string => {
 
     const regexWeathers = {
         'Sunny': RegexSunny,
+        'Overcast': RegexOvercast,
         'PartialCloud': RegexCloudy,
         'PatchyRainNearby': RegexPatchyRain,
         'LightRainShower': RegexLightRain,
@@ -24,7 +27,8 @@ const useImageWeather = (weather: string , is_day:boolean): string => {
         'PatchySnow': RegexPatchySnow,
         'ModerateSnow': RegexModerateSnow,
         'HeavySnow': RegexHeavySnow,
-        'LightSnow': RegexLightSnow
+        'LightSnow': RegexLightSnow,
+        'Thunder':RegexStorm
     };
 
         

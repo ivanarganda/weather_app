@@ -63,13 +63,13 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         return useImageWeather(weather.trim() , is_day === 0 ? false : true );
     };
     
-    const getForecast = async(days: ParamForecast['days'] = false) => {
+    const getForecast = async(lat:number, lng:number) => {
         let generalUrl = `${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}&days=7`;
     
         const response = await axios.get(`${generalUrl}`);
 
         if (response.data.current !== undefined) {
-
+        
             // let currentHour = 
             let currentHour = new Date().getHours();
             if ( currentHour === 24 ){
@@ -138,7 +138,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
     useEffect(() => {
         if (city && address) {
-            getForecast();
+            getForecast( location.lat, location.lng );
         }
     }, [address , changingLocation , city, API_URL]) 
 
