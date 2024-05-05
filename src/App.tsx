@@ -14,7 +14,7 @@ const App: FC = () => {
     const setBackgroundImage = async () => {
       if (condition!== undefined) {
         let imageWeather = condition?.weather.trim(); 
-        try {
+        try {   
           
           // Dynamically import the image
           const imageURL = await import(`./assets/wallpapersWeather/${condition?.forecast?.is_day === 1 ? 'morning' : 'night'}/${imageWeather}.jpg`); 
@@ -30,7 +30,7 @@ const App: FC = () => {
         }
       } 
     };
-    setBackgroundImage()
+    setBackgroundImage() 
   }, [ condition])
 
   return (

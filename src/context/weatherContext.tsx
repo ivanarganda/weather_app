@@ -29,11 +29,6 @@ type Location = {
     lng: number
 }
 
-// For getForecast function
-interface ParamForecast {
-    days: boolean | number
-}
-
 const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderProps) => {
 
     const [address, setAddress] = useState<string | undefined>();
@@ -64,7 +59,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     };
     
     const getForecast = async(lat:number, lng:number) => {
-        let generalUrl = `${API_URL}?q=${city},${address}&key=${process.env.REACT_APP_API_WEATHER_KEY}&days=7`;
+        let generalUrl = `${API_URL}?q=${lat},${lng}&key=${process.env.REACT_APP_API_WEATHER_KEY}&days=7`;
     
         const response = await axios.get(`${generalUrl}`);
 
@@ -74,7 +69,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
             let currentHour = new Date().getHours();
             if ( currentHour === 24 ){
                 currentHour = 0;
-            }
+            } 
 
             let is_day = response.data.forecast.forecastday[0].hour[currentHour].is_day;
         
@@ -117,14 +112,12 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
             geolocation.getCurrentPosition((position) => {
                 let lat = position.coords.latitude;
                 let lng = position.coords.longitude;
-                
-                axios.get(API_URL + '?q=' + lat + ',' + lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
-                    setAddress(response.data.location.name);
-                    setCity(response.data.location.region);                
-
-                })
-
+                setLocation({
+                    lat: lat,
+                    lng: lng
+                });
+                setChangingLocation(true); 
             })
         } else {
             axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
@@ -134,13 +127,13 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
             })
         }
-    }, [changingLocation, city, address, geolocation, getCurrentCity, API_URL, location.lat, location.lng]);
+    }, [changingLocation, city, address, geolocation , API_URL, location.lat, location.lng]);
 
-    useEffect(() => {
-        if (city && address) {
-            getForecast( location.lat, location.lng );
-        }
-    }, [address , changingLocation , city, API_URL]) 
+    useEffect(() => { 
+
+        getForecast( location.lat, location.lng );
+        
+    }, [address , changingLocation , city, API_URL])  
 
     return (
         <GeolocalizationContext.Provider value={{ address, condition, city, changeLocation , getCurrentWeather , forecastDays }}>

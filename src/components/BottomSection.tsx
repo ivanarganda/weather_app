@@ -6,7 +6,7 @@ import Arrow from './Arrow';
 
 const BottomSection: FC = () => { 
     const { forecastDays , condition } = useContext(GeolocalizationContext);
-    const [byDays , setByDays] = useState<number>(0); 
+    const [byDays , setByDays] = useState<number>(-1);  
 
     const forecast = useMemo(() => forecastDays, [forecastDays]); 
     // Fixing useMemo usage 
@@ -58,7 +58,7 @@ const BottomSection: FC = () => {
             hours.push(forecast[byDays].hour[i]);
         }
         setHoursByDay( hours );
-    },[condition])
+    },[byDays]) 
 
     useEffect(()=>{
         
@@ -121,7 +121,7 @@ const BottomSection: FC = () => {
                         onMouseMove={handleMouseMove} 
                         onMouseDown={handleMouseDown} 
                         onMouseUp={handleMouseUp}
-                        ref={scrollPosition}
+                        ref={scrollPosition}  
                         className='pl-12 w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-10 absolute text-wrap'>
                         {hoursByDay?.map((forecast: any, day: number) => {
                             let hour = forecast.time.split(':')[0].split(' ')[1];
@@ -129,7 +129,7 @@ const BottomSection: FC = () => {
                             let weather = forecast.condition.text.trim(); 
                             
                             return (
-                            <div key={day} className="w-full  flex-col">
+                            <div key={day} className="w-full  flex-col"> 
                                 <p className="text-lg">{hour}h</p>
                                 <p className="text-2xl font-bold">{temperature}</p>
                                 <p className="text-center text-3xl mt-2">{icons[checkIfMorning(weather)]}</p>
