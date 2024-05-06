@@ -23,12 +23,14 @@ const SpainMap: FC = () => {
         };
 
         fetchWeatherData();
+        
     }, [getCurrentWeather,memorizedProvinces]);   
 
     return (
         <React.Fragment>
             <img src={imageMap} className='relative'  width='100%' alt="map of spain" />
             {weatherData && memorizedProvinces.map((province, index) => (
+                
                 <React.Fragment key={index}>
                     <div>
                         <img onClick={() => changeLocation(province.location.lat, province.location.lng)} className='group cursor-pointer hover:scale-90 transition-all' src={require(`./../assets/Provinces/${province.name}.png`)} style={{

@@ -28,10 +28,10 @@ const App: FC = () => {
           // Handle error when image cannot be loaded
           console.error("Error loading background image:", error);
         }
-      } 
+      }  
     };
     setBackgroundImage() 
-  }, [ condition])
+  }, [ condition])         
 
   return (
     <Suspense fallback={null}>
@@ -49,7 +49,7 @@ const App: FC = () => {
         </footer>
         {/* Spain map */}
         <map id='weatherMap' className="m-auto mt-20 w-1/2 bg-gray-800 rounded-lg bg-opacity-30 relative">
-          <SpainMap />
+          <SpainMap /> 
         </map>
       </div>
     </Suspense>

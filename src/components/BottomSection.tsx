@@ -12,36 +12,18 @@ const BottomSection: FC = () => {
     // Fixing useMemo usage 
     const [ hoursByDay , setHoursByDay] = useState<string[]>();
 
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragStartPosition, setDragStartPosition] = useState({ x: 0, y: 0 });
-    const [contentPosition, setContentPosition] = useState({ x: 0, y: 0 });
-    const scrollPosition = useRef<HTMLDivElement>(null);
-
-    const handleMouseDown = (event:Events['onMouse']) => {
-        setIsDragging(true);
-        setDragStartPosition({
-        x: event.clientX,
-        y: event.clientY
-        });
-    };
-
-    const handleMouseMove = (event:Events['onMouse']) => {
-        if (isDragging) {
-        const deltaX = event.clientX - dragStartPosition.x;
-        const deltaY = event.clientY - dragStartPosition.y;
-        setContentPosition({
-            x: contentPosition.x + deltaX,
-            y: contentPosition.y + deltaY
-        });
-        setDragStartPosition({
-            x: event.clientX,
-            y: event.clientY
-        });
+    const handleScrollLeft = () => {
+        const boxGraphicalHours = document.getElementById("box-graphical-hours");
+        if (boxGraphicalHours) {
+            boxGraphicalHours.scrollLeft -= boxGraphicalHours.offsetWidth;
         }
     };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
+    
+    const handleScrollRight = () => {
+        const boxGraphicalHours = document.getElementById("box-graphical-hours");
+        if (boxGraphicalHours) {
+            boxGraphicalHours.scrollLeft += boxGraphicalHours.offsetWidth;
+        }
     };
 
     const checkIfMorning = useMemo(()=> ( weather:string ):string => {
@@ -57,12 +39,8 @@ const BottomSection: FC = () => {
         for(let i = 0 ; i < forecast[byDays]?.hour?.length ; i++){
             hours.push(forecast[byDays].hour[i]);
         }
-        setHoursByDay( hours );
+        setHoursByDay( hours ); 
     },[byDays]) 
-
-    useEffect(()=>{
-        
-    },[dragStartPosition])
 
     return (
         <div className="mt-8 w-1/"> 
@@ -109,19 +87,16 @@ const BottomSection: FC = () => {
                 
             </div>
             { byDays !== -1 && (
-                <div id='box-graphical-hours' className="bg-black flex w-full h-40 bg-opacity-40 mt-10 rounded-md cursor-pointer relative">
-                    <div id='left-arrow' className='absolute hover:bg-gray-600 left-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
+                <div className="bg-black flex w-full h-40 bg-opacity-40 mt-10 rounded-md cursor-pointer relative">
+                    <div onClick={handleScrollLeft} className='absolute hover:bg-gray-600 left-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
                         <Arrow type='left'/>
                     </div>
-                    <div id='right-arrow' className='absolute hover:bg-gray-600 right-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
+                    <div onClick={handleScrollRight} className='absolute hover:bg-gray-600 right-0 flex flex-col justify-center items-center h-full bg-gray-700 bg-opacity-60 hover:bg-opacity-60 z-10'>
                         <Arrow type='right' />
                     </div>
                     
                     <div 
-                        onMouseMove={handleMouseMove} 
-                        onMouseDown={handleMouseDown} 
-                        onMouseUp={handleMouseUp}
-                        ref={scrollPosition}  
+                        id="box-graphical-hours" 
                         className='pl-12 w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-10 absolute text-wrap'>
                         {hoursByDay?.map((forecast: any, day: number) => {
                             let hour = forecast.time.split(':')[0].split(' ')[1];
