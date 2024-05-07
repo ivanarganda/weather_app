@@ -97,7 +97,7 @@ const BottomSection: FC = () => {
                     
                     <div 
                         id="box-graphical-hours" 
-                        className='pl-12 w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-10 absolute text-wrap'>
+                        className='pl-12 w-full overflow-x-auto scroll-box-graphical-hours p-4 h-full flex flex-row justify-around space-x-20 absolute text-wrap'>
                         {hoursByDay?.map((forecast: any, day: number) => {
                             let hour = forecast.time.split(':')[0].split(' ')[1];
                             let temperature = `${forecast.temp_c}ºC`;
@@ -114,7 +114,7 @@ const BottomSection: FC = () => {
                     </div>
                 </div>
             )}
-            
+             
         </div>
     );
 }

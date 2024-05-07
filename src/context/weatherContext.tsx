@@ -41,13 +41,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
         lng: 0
     });
     const geolocation = navigator.geolocation;
-    const API_URL_GEOLOCATION = `https://maps.googleapis.com/maps/api/geocode/`;
     const API_URL = `http://api.weatherapi.com/v1/forecast.json`;
-
-    const getCurrentCity = useCallback(async (lat: number, lng: number) => {        
-        const response = await axios.get(`${API_URL_GEOLOCATION}json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_GEOCODE_KEY}`);
-        return response.data;
-    }, [API_URL_GEOLOCATION])
 
     const getCurrentWeather = async (lat: number, lng: number): Promise<any> => {
         const response = await axios.get(`${API_URL}?q=${lat},${lng}&key=${process.env.REACT_APP_API_WEATHER_KEY}`);
@@ -105,6 +99,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
             lng: lng
         });
         setChangingLocation(true);
+        $(window).scrollTop(0);
     }
 
     useEffect(() => {

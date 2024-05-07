@@ -152,7 +152,316 @@ const provinces:ObjectProvinces = [
             top: "40%",
             left: "61.5%"
         }
-    }
+    },
+    {
+        name: "Asturias",
+        position: {
+            top: "0%",
+            left: "34.2%" 
+        },
+        location:{
+            lat:42.05201,
+            lng:-6.4894
+        },
+        size: {
+            width: "18.5%",
+            height: "15.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "4.5%",
+            left: "41.5%"
+        }
+    },
+    {
+        name: "Coruña",
+        position: {
+            top: "0%",
+            left: "20.5%" 
+        },
+        location:{
+            lat:43.37135,
+            lng:-8.396
+        },
+        size: {
+            width: "18.5%",
+            height: "19.0%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "5.1%",
+            left: "28.5%"
+        }
+    },
+    {
+        name: "Lugo",
+        position: {
+            top: "2.7%",
+            left: "30.9%" 
+        },
+        location:{
+            lat:43.00992,
+            lng:-7.55602
+        },
+        size: {
+            width: "8.7%",
+            height: "13.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "6.5%",
+            left: "33.5%"
+        }
+    },
+    {
+        name: "Ourense",
+        position: {
+            top: "14%",
+            left: "29.8%" 
+        },
+        location:{
+            lat:42.33669,
+            lng:-7.86407
+        },
+        size: {
+            width: "9.1%",
+            height: "8.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "16.5%",
+            left: "32.5%"
+        }
+    },
+    {
+        name: "Pontevedra",
+        position: { 
+            top: "11%",
+            left: "26.6%" 
+        },
+        location:{
+            lat:42.43100,
+            lng:-8.64435
+        },
+        size: {
+            width: "7.1%",
+            height: "12.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "12.5%",
+            left: "27.5%"
+        }
+    },
+    {
+        name: "Leon",
+        position: {
+            top: "8.7%",
+            left: "36.9%" 
+        },
+        location:{
+            lat:42.60003,
+            lng:-5.57032
+        },
+        size: {
+            width: "12.1%",
+            height: "12.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "11.5%",
+            left: "41.5%"
+        }
+    },
+    {
+        name: "Zamora",
+        position: {
+            top: "16.0%",
+            left: "33.2%" 
+        },
+        location:{
+            lat:41.50633,
+            lng:-5.74456
+        },
+        size: {
+            width: "17.1%",
+            height: "19.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "21.5%",
+            left: "41.5%"
+        }
+    },
+    {
+        name: "Salamanca",
+        position: {
+            top: "28.0%",
+            left: "37.2%" 
+        },
+        location:{
+            lat:40.96882,
+            lng:-5.66388
+        },
+        size: {
+            width: "10.1%",
+            height: "11.4%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "30%",
+            left: "39.5%"
+        }
+    },
+    {
+        name: "Caceres",
+        position: {
+            top: "35.6%",
+            left: "32.1%" 
+        },
+        location:{
+            lat:39.47649,
+            lng:-6.37224
+        },
+        size: {
+            width: "17.1%",
+            height: "19.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "41.5%",
+            left: "39.5%"
+        }
+    },
+    {
+        name: "Badajoz",
+        position: {
+            top: "46.9%",
+            left: "33.3%" 
+        },
+        location:{
+            lat:38.87789,
+            lng:-6.97061
+        },
+        size: {
+            width: "17.1%",
+            height: "18.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "52.8%",
+            left: "39.5%"
+        }
+    },
+    {
+        name: "Huelva",
+        position: {
+            top: "58.6%",
+            left: "28.4%" 
+        },
+        location:{
+            lat:37.26638,
+            lng:-6.94004
+        },
+        size: {
+            width: "17.1%",
+            height: "19.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "63.5%",
+            left: "34.5%"
+        }
+    },
+    {
+        name: "Valladolid",
+        position: {
+            top: "17.2%",
+            left: "45.4%" 
+        },
+        location:{
+            lat:41.65518,
+            lng:-4.72372
+        },
+        size: {
+            width: "8.1%",
+            height: "14.2%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "22.5%",
+            left: "46.5%"
+        }
+    },
+    {
+        name: "Palencia",
+        position: {
+            top: "10.4%",
+            left: "46.4%" 
+        },
+        location:{
+            lat:42.00955,
+            lng:-4.52406
+        },
+        size: {
+            width: "8.1%",
+            height: "13.2%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "14.5%",
+            left: "47.8%"
+        }
+    },
+    // {
+    //     name: "Cantabria",
+    //     position: {
+    //         top: "58.6%",
+    //         left: "28.4%" 
+    //     },
+    //     location:{
+    //         lat:42.00955,
+    //         lng:-4.52406
+    //     },
+    //     size: {
+    //         width: "17.1%",
+    //         height: "19.7%"
+    //     },
+    //     iconWeather: {
+    //         url: '',
+    //         width: "4%",
+    //         height: "3%",
+    //         top: "63.5%",
+    //         left: "34.5%"
+    //     }
+    // }
+    
 ];
 
 export default provinces;
