@@ -115,6 +115,7 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
                 setChangingLocation(true); 
             })
         } else {
+            
             axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
 
                 setAddress(response.data.location.name);
@@ -125,8 +126,8 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
     }, [changingLocation, city, address, geolocation , API_URL, location.lat, location.lng]);
 
     useEffect(() => { 
-
-        getForecast( location.lat, location.lng );
+ 
+        getForecast( location.lat, location.lng ); 
         
     }, [address , changingLocation , city, API_URL])  
 

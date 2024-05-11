@@ -439,28 +439,624 @@ const provinces:ObjectProvinces = [
             left: "47.8%"
         }
     },
-    // {
-    //     name: "Cantabria",
-    //     position: {
-    //         top: "58.6%",
-    //         left: "28.4%" 
-    //     },
-    //     location:{
-    //         lat:42.00955,
-    //         lng:-4.52406
-    //     },
-    //     size: {
-    //         width: "17.1%",
-    //         height: "19.7%"
-    //     },
-    //     iconWeather: {
-    //         url: '',
-    //         width: "4%",
-    //         height: "3%",
-    //         top: "63.5%",
-    //         left: "34.5%"
-    //     }
-    // }
+    {
+        name: "Cantabria",
+        position: {
+            top: "5.8%",
+            left: "48.7%" 
+        },
+        location:{
+            lat:42.73422,
+            lng:-3.46704
+        },
+        size: {
+            width: "9.5%",
+            height: "7.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "5.5%",
+            left: "51.5%"
+        }
+    },
+    {
+        name: "Burgos", 
+        position: {
+            top: "9.4%",
+            left: "51.5%" 
+        },
+        location:{
+            lat:42.34106,
+            lng:-3.70184
+        },
+        size: {
+            width: "7.9%",
+            height: "17.1%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "15.5%",
+            left: "53.8%"
+        }
+    },
+    {
+        name: "Vizcaya", 
+        position: {
+            top: "6.4%",
+            left: "56.1%" 
+        },
+        location:{
+            lat:43.26271,
+            lng:-2.92528
+        },
+        size: {
+            width: "5.9%",
+            height: "5.1%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "5.5%",
+            left: "58%"
+        }
+    },
+    {
+        name: "Guipuzcoa", 
+        position: {
+            top: "7%",
+            left: "60.8%" 
+        },
+        location:{
+            lat:42.89507,
+            lng:-2.60271
+        },
+        size: {
+            width: "4.5%",
+            height: "5.1%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "6.2%",
+            left: "61.2%"
+        }
+    },
+    {
+        name: "Alava", 
+        position: {
+            top: "9%",
+            left: "56.8%" 
+        },
+        location:{
+            lat:42.54787,
+            lng:-2.66552
+        },
+        size: {
+            width: "5.9%",
+            height: "7.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "9.5%",
+            left: "59%"
+        }
+    },
+    {
+        name: "Rioja", 
+        position: {
+            top: "15.2%",
+            left: "58.1%" 
+        },
+        location:{
+            lat:42.51248,
+            lng:-2.93148
+        },
+        size: {
+            width: "7.5%",
+            height: "7.1%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "15.5%",
+            left: "59.8%"
+        }
+    },
+    {
+        name: "Soria", 
+        position: {
+            top: "20%",
+            left: "54.8%" 
+        },
+        location:{
+            lat:41.76401,
+            lng:-2.46883
+        },
+        size: {
+            width: "11%",
+            height: "11.1%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "22.5%",
+            left: "58.8%"
+        }
+    },
+    {
+        name: "Navarra", 
+        position: {
+            top: "7.8%",
+            left: "61.3%" 
+        },
+        location:{
+            lat:42.81687,
+            lng:-1.64323
+        },
+        size: {
+            width: "8.9%",
+            height: "14.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "11.2%",
+            left: "64.2%"
+        }
+    },
+    {
+        name: "Zaragoza",  
+        position: {
+            top: "13.8%",
+            left: "62.8%" 
+        },
+        location:{
+            lat:41.65606,
+            lng:-0.87734
+        },
+        size: {
+            width: "14.7%",
+            height: "19.2%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "22.2%",
+            left: "67.2%"
+        }
+    },
+    {
+        name: "Teruel",  
+        position: {
+            top: "28.2%",
+            left: "65.0%" 
+        },
+        location:{
+            lat:40.3456,
+            lng:-1.10646
+        },
+        size: {
+            width: "11.6%",
+            height: "15.2%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "32.2%",
+            left: "68.2%"
+        }
+    },
+    {
+        name: "Huesca", 
+        position: {
+            top: "10.8%",
+            left: "68.6%" 
+        },
+        location:{
+            lat:42.81687,
+            lng:-1.64323
+        },
+        size: {
+            width: "10.1%", 
+            height: "17.4%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "16.2%",
+            left: "72.2%"
+        }
+    },
+    {
+        name: "Lerida", 
+        position: {
+            top: "11.3%",
+            left: "75.4%" 
+        },
+        location:{
+            lat:41.61674,
+            lng:0.62218
+        },
+        size: {
+            width: "9.1%", 
+            height: "17.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "16.2%",
+            left: "78.2%"
+        }
+    },
+    {
+        name: "Barcelona", 
+        position: {
+            top: "14%",
+            left: "77%"  
+        },
+        location:{
+            lat:41.38879,
+            lng:2.15899
+        },
+        size: {
+            width: "17%", 
+            height: "21%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "20.2%",
+            left: "83.2%"
+        }
+    },
+    {
+        name: "Gerona", 
+        position: {
+            top: "14.5%",
+            left: "84%"  
+        },
+        location:{
+            lat:41.98311,
+            lng:2.82493
+        },
+        size: {
+            width: "8%", 
+            height: "9.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "15.2%",
+            left: "87.2%"
+        }
+    },
+    {
+        name: "Tarragona", 
+        position: {
+            top: "24.3%",
+            left: "75.9%" 
+        },
+        location:{
+            lat:41.11667,
+            lng:1.25000
+        },
+        size: {
+            width: "7.1%", 
+            height: "12.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "28.2%",
+            left: "76.2%"
+        }
+    },
+    // TODO change Burriana by Castellon
+    {
+        name: "Castellon", 
+        position: {
+            top: "33.5%",
+            left: "70.4%" 
+        },
+        location:{
+            lat:39.9856700,
+            lng:-0.0493500
+        },
+        size: {
+            width: "7.1%", 
+            height: "11.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "37.2%",
+            left: "72.2%"
+        }
+    },
+    {
+        name: "Valencia", 
+        position: {
+            top: "40%",
+            left: "66.7%" 
+        },
+        location:{
+            lat:39.46975,
+            lng:-0.37739
+        },
+        size: {
+            width: "8.3%", 
+            height: "15.5%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "46.2%",
+            left: "69.6%"
+        }
+    },
+    // TODO: change Santa Pola by Alicante
+    {
+        name: "Alicante", 
+        position: {
+            top: "52.5%",
+            left: "69%" 
+        },
+        location:{
+            lat:38.34517,
+            lng:-0.48149
+        },
+        size: {
+            width: "8.2%", 
+            height: "12.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "55.2%",
+            left: "70%"
+        }
+    },
+    {
+        name: "CiudadReal", 
+        position: {
+            top: "46.5%",
+            left: "47.2%" 
+        },
+        location:{
+            lat:38.98626,
+            lng:-3.92907
+        },
+        size: {
+            width: "13.5%", 
+            height: "12.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "50.2%",
+            left: "52%"
+        }
+    },
+    {
+        name: "Albacete", 
+        position: {
+            top: "48%",
+            left: "59.2%" 
+        },
+        location:{
+            lat:38.99424,
+            lng:-1.85643
+        },
+        size: {
+            width: "10.7%", 
+            height: "14.4%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "51.2%",
+            left: "63%"
+        }
+    },
+    {
+        name: "Sevilla",
+        position: {
+            top: "59.9%",
+            left: "38.6%" 
+        },
+        location:{
+            lat:37.38283,
+            lng:-5.97317
+        },
+        size: {
+            width: "10.7%",
+            height: "15.7%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "65.5%",
+            left: "41.5%"
+        }
+    },
+    {
+        name: "Cadiz",
+        position: {
+            top: "72.5%",
+            left: "38.6%" 
+        },
+        location:{
+            lat:36.52672,
+            lng:-6.2891
+        },
+        size: {
+            width: "7.9%",
+            height: "10.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "75.5%",
+            left: "40.5%"
+        }
+    }, 
+    {
+        name: "Cordoba",
+        position: {
+            top: "55%",
+            left: "43.6%" 
+        },
+        location:{
+            lat:37.89155,
+            lng:-4.77275
+        },
+        size: {
+            width: "9.8%",
+            height: "16.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "60.5%",
+            left: "46.5%"
+        }
+    },
+    {
+        name: "Malaga",
+        position: {
+            top: "71%",
+            left: "43.5%" 
+        },
+        location:{
+            lat:36.72016,
+            lng:-4.42034
+        },
+        size: {
+            width: "10.8%",
+            height: "9%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "72.5%",
+            left: "46.5%"
+        }
+    },
+    {
+        name: "Jaen",
+        position: {
+            top: "57%",
+            left: "50.6%" 
+        },
+        location:{
+            lat:37.76922,
+            lng:-3.79028
+        },
+        size: {
+            width: "12%",
+            height: "12.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "60%",
+            left: "54.5%"
+        }
+    },
+    {
+        name: "Granada",
+        position: {
+            top: "60.7%",
+            left: "50.1%" 
+        },
+        location:{
+            lat:37.76922,
+            lng:-3.79028
+        },
+        size: {
+            width: "13.7%",
+            height: "16.6%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "68%",
+            left: "54.5%"
+        }
+    },
+    {
+        name: "Murcia",
+        position: {
+            top: "55.4%",
+            left: "61.5%" 
+        },
+        location:{
+            lat:37.98704,
+            lng:-1.13004
+        },
+        size: {
+            width: "9.5%",
+            height: "13%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "60%",
+            left: "64.5%"
+        }
+    },
+    {
+        name: "Almeria",
+        position: {
+            top: "63.7%",
+            left: "57.6%" 
+        },
+        location:{
+            lat:36.83814,
+            lng:-2.45974
+        },
+        size: {
+            width: "8.7%",
+            height: "12.9%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "69%",
+            left: "61.5%"
+        }
+    },
     
 ];
 

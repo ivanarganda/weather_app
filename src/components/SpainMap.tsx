@@ -40,7 +40,7 @@ const SpainMap: FC = () => {
                         height: '' + province.size.height,
                         background: '',
                         borderRadius: '50%',
-                        zIndex: 1
+                        zIndex: -1
                     }} alt={province.name} /> 
                     <span onClick={() => changeLocation(province.location.lat, province.location.lng)} className='cursor-pointer hover:scale-150 w-10 transition-all' style={{
                         position: 'absolute',
