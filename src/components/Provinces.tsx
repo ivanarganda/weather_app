@@ -1058,6 +1058,53 @@ const provinces:ObjectProvinces = [
         }
     },
     
+    // BALEARS ISLAND
+    {
+        name: "Ibiza",
+        position: {
+            top: "50.5%",
+            left: "81.6%" 
+        },
+        location:{
+            lat:38.90883,
+            lng:1.43296
+        },
+        size: {
+            width: "2.7%",
+            height: "3.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "48%",
+            left: "81%"
+        }
+    },
+    // TODO change San Francisco Javier (Islas Baleares) by Formentera (Islas Baleares)
+    {
+        name: "Formentera",
+        position: {
+            top: "52.6%",
+            left: "82.4%" 
+        },
+        location:{
+            lat:38.70566,
+            lng:1.42893
+        },
+        size: {
+            width: "2%",
+            height: "3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "51%",
+            left: "82%"
+        }
+    },
+
 ];
 
 export default provinces;
