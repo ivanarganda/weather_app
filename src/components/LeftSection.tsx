@@ -1,7 +1,10 @@
 import React , { FC, useContext } from 'react';
 import { GeolocalizationContext, GeolocalizationContextValue } from '../context/weatherContext';
 
- 
+interface Scroll {
+  scrollLeft: number;
+  scrollTop: number;
+}
 const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
 
     const { city , address , condition } = useContext<GeolocalizationContextValue>(GeolocalizationContext);  
@@ -53,7 +56,12 @@ const LeftSection: FC<React.SVGProps<SVGSVGElement>> = (props) => {
             <span className="text-4xl font-medium align-top mt-2">°C</span>
           </div>
         </div>
-        <button className="inline-flex mt-5 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-2 bg-transparent border border-white text-white">
+        <button onClick={()=>{
+          let scrollMap = $('#weatherMap')?.height();
+          console.log(scrollMap);
+          
+          window.scrollTo({top: scrollMap, behavior:'smooth'});
+        }} className="inline-flex mt-5 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-2 bg-transparent border border-white text-white">
           Change Location
         </button>
       </div>

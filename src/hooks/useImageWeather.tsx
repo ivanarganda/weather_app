@@ -1,5 +1,4 @@
 const useImageWeather = (weather: string , is_day:boolean): string => {
-    console.log( weather );
     
     let RegexSunny = 'Sunny|Clear|Mostly sunny|Mostly Sunny';
     let RegexCloudy = 'Partly cloudy|Partly Cloudy|cloudy|Cloudy|Few clouds|Few Clouds|Overcast';

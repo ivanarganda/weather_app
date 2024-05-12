@@ -93,6 +93,30 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
 
     };
 
+    interface MapAddress {
+        [key: string]: string
+    }
+
+    const mapAddress = (address: string): string => {
+        const mappedAddress:MapAddress = {
+            "Asturianos":"Asturias",
+            "Pereiro De Aguiar":"Ourense",
+            "Cantabrana":"Cantabria",
+            "Casalarreina":"Alava",
+            "Torremontalbo":"La Rioja",
+            "Burriana":"Castellon",
+            "Santa Pola":"Alicante",
+            "San Francisco Javier":"Formentera",
+            "Palma":"Mallorca",
+            "Mahon":"Menorca",
+            "Arrecife":"Lanzarote",
+            "Guardaya":"Forteventura",
+            "Belgara Baja":"El Hierro"
+        }
+       
+        return mappedAddress[address] ?? address;
+    }
+
     const changeLocation = (lat: number, lng: number): void => {
         setLocation({
             lat: lat,
@@ -115,13 +139,16 @@ const GeolocalizationProvider = ({ children }: GeolocalizationContextProviderPro
                 setChangingLocation(true); 
             })
         } else {
+
+            setTimeout(()=>{
+                axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
+
+                    setAddress(mapAddress(response.data.location.name));
+                    setCity(response.data.location.region);                
+
+                })
+            },1000)
             
-            axios.get(API_URL + '?q=' + location.lat + ',' + location.lng + '&key=' + process.env.REACT_APP_API_WEATHER_KEY).then((response) => {
-
-                setAddress(response.data.location.name);
-                setCity(response.data.location.region);                
-
-            })
         }
     }, [changingLocation, city, address, geolocation , API_URL, location.lat, location.lng]);
 

@@ -153,6 +153,7 @@ const provinces:ObjectProvinces = [
             left: "61.5%"
         }
     },
+    // TODO change Asturianos (Castilla y Leon) by Asturias (Castilla y Leon)
     {
         name: "Asturias",
         position: {
@@ -219,6 +220,7 @@ const provinces:ObjectProvinces = [
             left: "33.5%"
         }
     },
+    // TODO change Pereiro De Aguiar (Galicia) by Ourense (Galicia)
     {
         name: "Ourense",
         position: {
@@ -439,6 +441,7 @@ const provinces:ObjectProvinces = [
             left: "47.8%"
         }
     },
+    // TODO change Cantabrana (Castilla y Leon) by Cantabria (Castilla y Leon)
     {
         name: "Cantabria",
         position: {
@@ -527,6 +530,7 @@ const provinces:ObjectProvinces = [
             left: "61.2%"
         }
     },
+    // TODO change Casalarreina (La Rioja) by Alava
     {
         name: "Alava", 
         position: {
@@ -549,6 +553,7 @@ const provinces:ObjectProvinces = [
             left: "59%"
         }
     },
+    // TODO change Torremontalbo (La Rioja) by La Rioja
     {
         name: "Rioja", 
         position: {
@@ -666,8 +671,8 @@ const provinces:ObjectProvinces = [
             left: "68.6%" 
         },
         location:{
-            lat:42.81687,
-            lng:-1.64323
+            lat:42.136150,
+            lng:-0.408700
         },
         size: {
             width: "10.1%", 
@@ -769,7 +774,7 @@ const provinces:ObjectProvinces = [
             left: "76.2%"
         }
     },
-    // TODO change Burriana by Castellon
+    // TODO change Burriana (Comunidad Valenciana) by Castellon (Comunidad Valenciana)
     {
         name: "Castellon", 
         position: {
@@ -814,7 +819,7 @@ const provinces:ObjectProvinces = [
             left: "69.6%"
         }
     },
-    // TODO: change Santa Pola by Alicante
+    // TODO: change Santa Pola (Comunidad Valenciana) by Alicante (Comunidad Valenciana)
     {
         name: "Alicante", 
         position: {
@@ -998,8 +1003,8 @@ const provinces:ObjectProvinces = [
             left: "50.1%" 
         },
         location:{
-            lat:37.76922,
-            lng:-3.79028
+            lat:37.1881700,
+            lng:-3.6066700
         },
         size: {
             width: "13.7%",
@@ -1102,6 +1107,209 @@ const provinces:ObjectProvinces = [
             height: "3%",
             top: "51%",
             left: "82%"
+        }
+    },
+    // TODO change Palma (Islas Baleares) by Mallorca (Islas Baleares)
+    {
+        name: "Mallorca",
+        position: {
+            top: "40.6%",
+            left: "88.4%" 
+        },
+        location:{
+            lat:39.56939,
+            lng:2.65024
+        },
+        size: {
+            width: "5.4%",
+            height: "8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "41%",
+            left: "90%"
+        }
+    },
+    // TODO change Mahon by Menorca
+    {
+        name: "Menorca",
+        position: {
+            top: "38.8%",
+            left: "95.6%" 
+        },
+        location:{
+            lat:39.966667,
+            lng:4.083333
+        },
+        size: {
+            width: "3.1%",
+            height: "3.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "37%",
+            left: "96%"
+        }
+    },
+    // TODO change Arrecife (Canarias) by Lanzarote
+    {
+        name: "Lanzarote",
+        position: {
+            top: "81.8%",
+            left: "28.6%" 
+        },
+        location:{
+            lat:28.963020,
+            lng:-13.54769
+        },
+        size: {
+            width: "3.5%",
+            height: "3.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "80%",
+            left: "28%"
+        }
+    },
+    // TODO change Guardaya (Canarias) by Forteventura
+    {
+        name: "Forteventura",
+        position: {
+            top: "86.8%",
+            left: "24.3%" 
+        },
+        location:{
+            lat:28.04351,
+            lng:-14.50975
+        },
+        size: {
+            width: "4.9%",
+            height: "7.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "88%",
+            left: "26%"
+        }
+    },
+    {
+        name: "GranCanaria",
+        position: {
+            top: "92.8%",
+            left: "16.5%" 
+        },
+        location:{
+            lat:28.0997300,
+            lng:-15.4134300
+        },
+        size: {
+            width: "2.9%",
+            height: "4.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "92.3%",
+            left: "16.3%"
+        }
+    },
+    {
+        name: "Tenerife",
+        position: {
+            top: "86.8%",
+            left: "9.3%" 
+        },
+        location:{
+            lat:28.46824000,
+            lng:-16.2546200
+        },
+        size: {
+            width: "6.4%",
+            height: "8.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "88.4%",
+            left: "10.3%"
+        }
+    },
+    {
+        name: "Gomera",
+        position: {
+            top: "91.8%",
+            left: "6.5%" 
+        },
+        location:{
+            lat:28.0916300,
+            lng:-17.1133100
+        },
+        size: {
+            width: "1.9%",
+            height: "2.8%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "90.3%",
+            left: "6%"
+        }
+    },
+    {
+        name: "Palma",
+        position: {
+            top: "85.8%",
+            left: "2.6%" 
+        },
+        location:{
+            lat:28.6835100,
+            lng:-17.7642100
+        },
+        size: {
+            width: "1.9%",
+            height: "4.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "84.3%",
+            left: "2%"
+        }
+    },
+    // TODO change Belgara Baja (Canarias) by El hierro (Canarias)
+    {
+        name: "Hierro",
+        position: {
+            top: "95.1%",
+            left: "1.6%" 
+        },
+        location:{
+            lat:27.7500000,
+            lng:-18.0000000
+        },
+        size: {
+            width: "1.9%",
+            height: "3.3%"
+        },
+        iconWeather: {
+            url: '',
+            width: "4%",
+            height: "3%",
+            top: "93.3%",
+            left: "1%"
         }
     },
 

@@ -70,6 +70,8 @@ const BottomSection: FC = () => {
                     let minTemperature = forecast.day.mintemp_c;
                     let temperature = `${maxTemperature}ºC / ${minTemperature}ºC`;
                     let weather = forecast.day.condition.text.trim();
+                    console.log(weather);
+                    
   
                     if ( currentDay === day ){
                         date = 'Today';
@@ -101,7 +103,9 @@ const BottomSection: FC = () => {
                         {hoursByDay?.map((forecast: any, day: number) => {
                             let hour = forecast.time.split(':')[0].split(' ')[1];
                             let temperature = `${forecast.temp_c}ºC`;
-                            let weather = forecast.condition.text.trim(); 
+                            let weather = forecast.condition.text.trim();
+                            console.log(weather);
+                             
                             
                             return (
                             <div key={day} className="w-full  flex-col"> 

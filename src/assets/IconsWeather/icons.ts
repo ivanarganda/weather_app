@@ -28,6 +28,10 @@ export const icons: Icon = {
     'Light Rain':'🌧️',
     'Patchy light rain':'🌧️',
     'Patchy Light Rain':'🌧️',
+    'Moderate rain':'🌧️',
+    'Moderate Rain':'🌧️',
+    'Heavy rain':'🌧️🌧️',
+    'Heavy Rain':'🌧️🌧️',
     // Snow
     'Light snow':'🌨️',
     'Light Snow':'🌨️',
@@ -54,6 +58,7 @@ export const icons: Icon = {
     // Rain with Storm
     'Patchy light rain with thunder':'🌩️🌧️',
     'Patchy Light Rain with Thunder':'🌩️🌧️',
+    'Patchy light rain in area with thunder':'🌩️🌧️',
     'Moderate or heavy rain with thunder':'🌩️🌧️',
     'Moderate or Heavy Rain with Thunder':'🌩️🌧️',
     'Moderate rain with thunder':'🌩️🌧️',
