@@ -16,6 +16,7 @@ export const icons: Icon = {
     'Patchy rain Nearby':'🌧️',
     'Light Rain shower':'🌦️',
     'Light Rain Shower':'🌦️',
+    'Light rain shower':'🌦️', 
     'Patchy rain':'🌧️',
     'Patchy Rain':'🌧️', 
     'Patchy light drizzle':'🌧️',

@@ -70,8 +70,6 @@ const BottomSection: FC = () => {
                     let minTemperature = forecast.day.mintemp_c;
                     let temperature = `${maxTemperature}ºC / ${minTemperature}ºC`;
                     let weather = forecast.day.condition.text.trim();
-                    console.log(weather);
-                    
   
                     if ( currentDay === day ){
                         date = 'Today';
