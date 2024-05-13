@@ -1,7 +1,6 @@
-import React, { FC , useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC , useContext, useEffect, useMemo, useState } from 'react';
 import { GeolocalizationContext } from '../context/weatherContext';
 import { icons } from '../assets/IconsWeather/icons';
-import {Events} from '../types';
 import Arrow from './Arrow';
 
 const BottomSection: FC = () => { 
