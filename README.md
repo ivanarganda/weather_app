@@ -10,19 +10,20 @@ This project is designed to facilitate the management of articles and orders usi
 
 ### Installation Steps
 
-1. **Clone the Repository:** ensure to have git installed by bash
-Navitage to wwww 
+1. **Create and install project:** ensure to have git installed by bash
+- Navitage to wwww 
+```
+git clone https://github.com/ivanarganda/weather_app.git
+or
+git@github.com:ivanarganda/weather_app.git
 
 ```
-git clone https://github.com/ivanarganda/gestionarticulospedidos.git
-// or by SSH
-git clone git@github.com:ivanarganda/gestionarticulospedidos.git
-```
+- It might take a few minutes to create and install structure files of project
 
 2. **Navigate to Project Directory:**
 
 
-3. **Install Dependencies: All dependencies are alocated in package.json only install them**
+3. **Install Dependencies: All dependencies are alocated in package.json only install them** ( In case it is not got installed )
 
 ```
     npm install 
@@ -30,104 +31,7 @@ git clone git@github.com:ivanarganda/gestionarticulospedidos.git
     yarn add
 ```
 
-
-4. **Start JSON-Server:**
-- Ensure you have `json-server` installed globally.
-
-- Start JSON-Server with the provided `db.json` file located in the `server` folder:
-  ``` 
-  Cotent JSON:
-
-  {
-  "articulos": [
-    {
-      "id": 1,
-      "referencia": "001",
-      "nombre": "Producto A",
-      "descripcion": "Descripción del Producto A",
-      "precioSinImpuestos": 2,
-      "impuestoAplicable": 0.21
-    },
-    {
-      "id": 2,
-      "referencia": "002",
-      "nombre": "Producto B",
-      "descripcion": "Descripción del Producto B",
-      "precioSinImpuestos": 15,
-      "impuestoAplicable": 0.21
-    }
-  ],
-  "pedidos": [
-    {
-      "id": 1,
-      "items": [
-        {
-          "referencia": "001",
-          "cantidad": 2,
-          "precioUnitarioSinImpuestos": 2,
-          "impuestoPorcentaje": 21,
-          "precioTotalSinImpuestos": 4,
-          "precioTotalConImpuestos": 4.84
-        },
-        {
-          "referencia": "002",
-          "cantidad": 8,
-          "precioUnitarioSinImpuestos": 15,
-          "impuestoPorcentaje": 21,
-          "precioTotalSinImpuestos": 120,
-          "precioTotalConImpuestos": 145.2
-        }
-      ],
-      "precioTotalSinImpuestos": 109,
-      "precioTotalConImpuestos": 113.74000000000001
-    },
-    {
-      "id": 2,
-      "items": [
-        {
-          "referencia": "001",
-          "cantidad": 1,
-          "precioUnitarioSinImpuestos": 2,
-          "impuestoPorcentaje": 21,
-          "precioTotalSinImpuestos": 2,
-          "precioTotalConImpuestos": 2.1
-        }
-      ],
-      "precioTotalSinImpuestos": 2,
-      "precioTotalConImpuestos": 2.1
-    },
-    {
-      "id": 3,
-      "items": [
-        {
-          "referencia": "001",
-          "cantidad": 2,
-          "precioUnitarioSinImpuestos": 2,
-          "impuestoPorcentaje": 21,
-          "precioTotalSinImpuestos": 4,
-          "precioTotalConImpuestos": 4.0042
-        },
-        {
-          "referencia": "002",
-          "cantidad": 2,
-          "precioUnitarioSinImpuestos": 15,
-          "impuestoPorcentaje": 21,
-          "precioTotalSinImpuestos": 30,
-          "precioTotalConImpuestos": 30.0315
-        }
-      ],
-      "precioTotalSinImpuestos": 34,
-      "precioTotalConImpuestos": 34.0357
-    }
-  ]
-}
-
-  ```
-  ```
-  json-server --watch server/db.json --port 3000 --static .\public\ 
-  ```
-
-5. **Configure Tailwind CSS: ( In case not installed )**
+4. **Configure Tailwind CSS: ( In case not installed )**
 - If you haven't already, generate a `tailwind.config.js` file using Tailwind CLI:
   ```
   npx tailwindcss init
@@ -155,13 +59,19 @@ git clone git@github.com:ivanarganda/gestionarticulospedidos.git
         @tailwind utilities;
     
     ```
+
+5. **Api configuration**
+To use the app ensure to get public api key saved in .env as:
+    ```
+    REACT_APP_API_WEATHER_KEY=1c8a7c196774414b900183053242004
+
 6. **Start the Development Server:**
     In your VSCode cmd on your project root
 
     ```
-        npm run dev
+        npm start
         // or
-        yarn dev
+        yarn start
     
     ```
 
@@ -170,9 +80,7 @@ Once the development server has started successfully, you can access the applica
 
 ### Additional Information
 
-- **Material-UI:** This project utilizes Material-UI for building React components with Material Design.
-- **Material Icons:** Material Icons are used for providing icons in the user interface.
-- **JSON-Server:** JSON-Server is used to simulate a REST API based on a JSON file. The `db.json` file in the `server` folder acts as the database for this simulation.
+- **Material-UI:** You can use Material-UI for building React components with Material Design but in this case it is done with tailwind
 - **Tailwind CSS:** Tailwind CSS is used for styling the application. You can customize Tailwind CSS according to your project requirements by modifying the `tailwind.config.js` file.
 
 ### Contributing
@@ -185,4 +93,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 
 ### Author
 
-This project is authored and maintained by Iván González Valles. For any inquiries or support, you can get me in touch with [ivanartista96@gmail.com](mailto:ivanartista96@gmail.com).
+This project is authored and maintained by Iván González Valles. For any issues or support, you can get me in touch with [ivanartista96@gmail.com](mailto:ivanartista96@gmail.com).
